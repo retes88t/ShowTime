@@ -9,28 +9,43 @@ export function SceneCard({ scene }: SceneCardProps) {
   return (
     <Link
       to={`/escena/${scene.id}`}
-      className="group relative overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
+      className="group relative flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
     >
-      {/* Color bar top */}
-      <div className="h-2" style={{ backgroundColor: scene.color }} />
-
-      <div className="p-5">
+      {/* Image background */}
+      <div className="relative h-44 overflow-hidden">
+        {scene.imagenUrl ? (
+          <img
+            src={scene.imagenUrl}
+            alt={scene.nombre}
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+          />
+        ) : (
+          <div className="h-full w-full" style={{ backgroundColor: scene.color }} />
+        )}
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
         {/* Scene number badge */}
         <div
-          className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-full text-lg font-bold text-white"
+          className="absolute left-4 top-4 flex h-10 w-10 items-center justify-center rounded-full text-lg font-bold text-white shadow-lg"
           style={{ backgroundColor: scene.color }}
         >
           {scene.numero}
         </div>
+        {/* Title over image */}
+        <div className="absolute bottom-0 left-0 right-0 p-4">
+          <h3 className="text-lg font-semibold text-white drop-shadow-md">
+            {scene.nombre}
+          </h3>
+          {scene.subtitulo && (
+            <p className="text-sm text-white/80">{scene.subtitulo}</p>
+          )}
+        </div>
+      </div>
 
-        <h3 className="mb-1 text-lg font-semibold text-gray-900 group-hover:text-night">
-          {scene.nombre}
-        </h3>
-        {scene.subtitulo && (
-          <p className="mb-3 text-sm text-gray-500">{scene.subtitulo}</p>
-        )}
+      {/* Content */}
+      <div className="flex flex-1 flex-col p-4">
         {scene.descripcion && (
-          <p className="mb-4 line-clamp-2 text-sm text-gray-600">
+          <p className="mb-3 line-clamp-2 text-sm text-gray-600">
             {scene.descripcion}
           </p>
         )}
@@ -42,16 +57,18 @@ export function SceneCard({ scene }: SceneCardProps) {
           </div>
         )}
 
-        {scene.juego && (
-          <div className="inline-flex items-center gap-1 rounded-full bg-gold-light/50 px-2 py-1 text-xs text-gold-dark">
-            <span>&#127922;</span> {scene.juego}
-          </div>
-        )}
+        <div className="mt-auto">
+          {scene.juego && (
+            <div className="inline-flex items-center gap-1 rounded-full bg-gold-light/50 px-2.5 py-1 text-xs text-gold-dark">
+              <span>&#127922;</span> {scene.juego}
+            </div>
+          )}
+        </div>
       </div>
 
-      {/* Hover indicator */}
+      {/* Bottom color bar on hover */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-0.5 transform scale-x-0 transition-transform group-hover:scale-x-100"
+        className="absolute bottom-0 left-0 right-0 h-1 scale-x-0 transition-transform group-hover:scale-x-100"
         style={{ backgroundColor: scene.color }}
       />
     </Link>

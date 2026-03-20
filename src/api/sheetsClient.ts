@@ -1,91 +1,87 @@
 import type { SheetTab } from '../types';
 
-const SHEET_ID = import.meta.env.VITE_SHEET_ID;
-const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
 const APPS_SCRIPT_URL = import.meta.env.VITE_APPS_SCRIPT_URL;
 
-const SHEETS_API_BASE = 'https://sheets.googleapis.com/v4/spreadsheets';
+function getUrl(): string {
+  if (!APPS_SCRIPT_URL) {
+    throw new Error('VITE_APPS_SCRIPT_URL no esta configurada en .env');
+  }
+  return APPS_SCRIPT_URL;
+}
 
-export async function readSheet(tab: SheetTab): Promise<string[][]> {
-  if (!SHEET_ID || !API_KEY) {
-    console.warn('Google Sheets not configured. Using local data.');
+function cacheKey(tab: SheetTab): string {
+  return `showtime_${tab}`;
+}
+
+export function readCache<T>(tab: SheetTab): T[] {
+  try {
+    return JSON.parse(localStorage.getItem(cacheKey(tab)) || '[]');
+  } catch {
     return [];
   }
+}
 
-  const url = `${SHEETS_API_BASE}/${SHEET_ID}/values/${encodeURIComponent(tab)}?key=${API_KEY}`;
+export function writeCache<T>(tab: SheetTab, data: T[]): void {
+  localStorage.setItem(cacheKey(tab), JSON.stringify(data));
+}
+
+export async function readSheet<T>(tab: SheetTab): Promise<T[]> {
+  const url = `${getUrl()}?action=read&tab=${encodeURIComponent(tab)}`;
   const response = await fetch(url);
 
   if (!response.ok) {
-    console.error(`Failed to read sheet ${tab}:`, response.statusText);
-    return [];
+    throw new Error(`Error leyendo ${tab}: ${response.statusText}`);
   }
 
-  const data = await response.json();
-  return data.values || [];
+  const result = await response.json();
+  if (!result.success) {
+    throw new Error(result.error || `Error leyendo ${tab}`);
+  }
+
+  const data = result.data as T[];
+  writeCache(tab, data);
+  return data;
 }
 
 export async function writeSheet(
-  action: string,
+  action: 'add' | 'update' | 'delete' | 'seed',
   tab: SheetTab,
   data: Record<string, unknown>
 ): Promise<{ success: boolean; id?: string }> {
-  if (!APPS_SCRIPT_URL) {
-    console.warn('Apps Script URL not configured. Using local storage fallback.');
-    return localStorageFallback(action, tab, data);
-  }
-
-  const response = await fetch(APPS_SCRIPT_URL, {
+  const response = await fetch(getUrl(), {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ action, tab, data }),
   });
 
   if (!response.ok) {
-    throw new Error(`Failed to write to sheet: ${response.statusText}`);
+    throw new Error(`Error escribiendo en ${tab}: ${response.statusText}`);
   }
 
-  return response.json();
+  const result = await response.json();
+  if (!result.success) {
+    throw new Error(result.error || `Error en operacion ${action} en ${tab}`);
+  }
+
+  return result;
 }
 
-function localStorageFallback(
-  action: string,
+export async function seedSheet(
   tab: SheetTab,
-  data: Record<string, unknown>
-): { success: boolean; id?: string } {
-  const key = `showtime_${tab}`;
-  const existing: Record<string, unknown>[] = JSON.parse(localStorage.getItem(key) || '[]');
+  rows: Record<string, unknown>[]
+): Promise<void> {
+  const response = await fetch(getUrl(), {
+    method: 'POST',
+    body: JSON.stringify({ action: 'seed', tab, data: rows }),
+  });
 
-  switch (action) {
-    case 'add': {
-      const id = data.id as string || crypto.randomUUID();
-      existing.push({ ...data, id });
-      localStorage.setItem(key, JSON.stringify(existing));
-      return { success: true, id };
-    }
-    case 'update': {
-      const idx = existing.findIndex((item) => item.id === data.id);
-      if (idx >= 0) {
-        existing[idx] = { ...existing[idx], ...data };
-        localStorage.setItem(key, JSON.stringify(existing));
-      }
-      return { success: true };
-    }
-    case 'delete': {
-      const filtered = existing.filter((item) => item.id !== data.id);
-      localStorage.setItem(key, JSON.stringify(filtered));
-      return { success: true };
-    }
-    default:
-      return { success: false };
+  if (!response.ok) {
+    throw new Error(`Error poblando ${tab}: ${response.statusText}`);
   }
-}
 
-export function getLocalData<T>(tab: SheetTab): T[] {
-  const key = `showtime_${tab}`;
-  return JSON.parse(localStorage.getItem(key) || '[]');
-}
+  const result = await response.json();
+  if (!result.success) {
+    throw new Error(result.error || `Error poblando ${tab}`);
+  }
 
-export function setLocalData<T>(tab: SheetTab, data: T[]): void {
-  const key = `showtime_${tab}`;
-  localStorage.setItem(key, JSON.stringify(data));
+  writeCache(tab, rows);
 }

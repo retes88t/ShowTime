@@ -1,5 +1,5 @@
 import type { Scene, Material, Escenografia, Person } from '../types';
-import { setLocalData } from '../api/sheetsClient';
+import { seedSheet } from '../api/sheetsClient';
 import { SCENE_COLORS } from './constants';
 
 const SEED_SCENES: Scene[] = [
@@ -17,7 +17,7 @@ const SEED_SCENES: Scene[] = [
     lineaSalida: 'Sale por la puerta y rompe la cuarta pared',
     juego: 'Interpretacion de dibujos',
     parodia: '',
-    imagenUrl: '',
+    imagenUrl: 'https://psicologodecanini.com/wp-content/uploads/2022/01/psicoterapia.jpg.webp',
     color: SCENE_COLORS[0],
   },
   {
@@ -34,7 +34,7 @@ const SEED_SCENES: Scene[] = [
     lineaSalida: '',
     juego: 'Simon dice',
     parodia: 'Politico',
-    imagenUrl: '',
+    imagenUrl: 'https://www.lavanguardia.com/files/image_990_484/files/fp/uploads/2021/03/11/604a0199e4d24.r_d.457-306.jpeg',
     color: SCENE_COLORS[1],
   },
   {
@@ -51,7 +51,7 @@ const SEED_SCENES: Scene[] = [
     lineaSalida: '',
     juego: 'Interpretacion de dibujos',
     parodia: 'Influencer',
-    imagenUrl: '',
+    imagenUrl: 'https://media.mdzol.com/p/b2456a2fa49799d1ee54cc4b11ed54cf/adjuntos/373/imagenes/001/163/0001163718/760x0/smart/problemente-es-el-antagonista-mas-carismatico-las-peliculas-animadas-foto-archivo.jpg',
     color: SCENE_COLORS[2],
   },
   {
@@ -68,7 +68,7 @@ const SEED_SCENES: Scene[] = [
     lineaSalida: '',
     juego: 'Interpretacion de dibujos',
     parodia: 'Agente de viajes Disney',
-    imagenUrl: '',
+    imagenUrl: 'https://imgmedia.larepublica.pe/850x501/larepublica/original/2022/04/13/62574872ea80e22fb84460de.webp',
     color: SCENE_COLORS[3],
   },
   {
@@ -85,7 +85,7 @@ const SEED_SCENES: Scene[] = [
     lineaSalida: '',
     juego: 'Pendiente',
     parodia: 'Linea 6 del metro MTY',
-    imagenUrl: '',
+    imagenUrl: 'https://www.shutterstock.com/image-vector/construction-site-cartoon-scene-industrial-260nw-2658942637.jpg',
     color: SCENE_COLORS[4],
   },
   {
@@ -102,13 +102,12 @@ const SEED_SCENES: Scene[] = [
     lineaSalida: 'No te vayas a olvidar de tus heelys',
     juego: 'Interpretacion de dibujos',
     parodia: '',
-    imagenUrl: '',
+    imagenUrl: 'https://i0.wp.com/xavieh.com/wp-content/uploads/2016/04/FB2.jpg?resize=1024%2C667&ssl=1',
     color: SCENE_COLORS[5],
   },
 ];
 
 const SEED_MATERIALS: Material[] = [
-  // Scene 1 - Consultorio
   { id: 'mat-1', escenaId: 'scene-1', nombre: 'Bata de medico', cantidad: 1, estado: 'pendiente', responsableId: '', notas: 'Para Carlos L' },
   { id: 'mat-2', escenaId: 'scene-1', nombre: 'Camisa con rayas y mono grande contrastante', cantidad: 1, estado: 'pendiente', responsableId: '', notas: '' },
   { id: 'mat-3', escenaId: 'scene-1', nombre: 'Hojas y papeles', cantidad: 20, estado: 'pendiente', responsableId: '', notas: 'Para dibujos' },
@@ -118,7 +117,6 @@ const SEED_MATERIALS: Material[] = [
   { id: 'mat-7', escenaId: 'scene-1', nombre: 'Coderas y rodilleras', cantidad: 1, estado: 'pendiente', responsableId: '', notas: 'Para Teodoro - patinador' },
   { id: 'mat-8', escenaId: 'scene-1', nombre: 'Patineta', cantidad: 1, estado: 'pendiente', responsableId: '', notas: 'Prop de Teodoro' },
   { id: 'mat-9', escenaId: 'scene-1', nombre: 'Casco', cantidad: 1, estado: 'pendiente', responsableId: '', notas: 'Para Teodoro' },
-  // Scene 2 - Pirata
   { id: 'mat-10', escenaId: 'scene-2', nombre: 'Bandera de pirata', cantidad: 1, estado: 'pendiente', responsableId: '', notas: '' },
   { id: 'mat-11', escenaId: 'scene-2', nombre: 'Maquina de humo', cantidad: 1, estado: 'pendiente', responsableId: '', notas: '' },
   { id: 'mat-12', escenaId: 'scene-2', nombre: 'Licras llamativas tipo Deadpool', cantidad: 3, estado: 'pendiente', responsableId: '', notas: 'Para los Baobabs' },
@@ -126,7 +124,6 @@ const SEED_MATERIALS: Material[] = [
   { id: 'mat-14', escenaId: 'scene-2', nombre: 'Fomi y celofan', cantidad: 5, estado: 'pendiente', responsableId: '', notas: 'Para ambientar barco' },
   { id: 'mat-15', escenaId: 'scene-2', nombre: 'Pescados decorativos', cantidad: 10, estado: 'pendiente', responsableId: '', notas: 'Para el piso' },
   { id: 'mat-16', escenaId: 'scene-2', nombre: 'Pintura para espejos/vidrios', cantidad: 2, estado: 'pendiente', responsableId: '', notas: 'Para ambientar' },
-  // Scene 3 - Vanidoso
   { id: 'mat-17', escenaId: 'scene-3', nombre: 'Espejos', cantidad: 3, estado: 'pendiente', responsableId: '', notas: '' },
   { id: 'mat-18', escenaId: 'scene-3', nombre: 'Imagenes impresas de caras', cantidad: 5, estado: 'pendiente', responsableId: '', notas: 'Caras de mujer/hombre' },
   { id: 'mat-19', escenaId: 'scene-3', nombre: 'Lona "Ella es lo mas increible del mundo"', cantidad: 1, estado: 'pendiente', responsableId: '', notas: '' },
@@ -148,11 +145,11 @@ const SEED_PEOPLE: Person[] = [
 ];
 
 export async function seedAllData(): Promise<void> {
-  setLocalData('Escenas', SEED_SCENES);
-  setLocalData('Materiales', SEED_MATERIALS);
-  setLocalData('Escenografia', SEED_ESCENOGRAFIA);
-  setLocalData('Personas', SEED_PEOPLE);
-  setLocalData('Notas', []);
-  setLocalData('Chat', []);
-  setLocalData('Asignaciones', []);
+  await seedSheet('Escenas', SEED_SCENES as unknown as Record<string, unknown>[]);
+  await seedSheet('Materiales', SEED_MATERIALS as unknown as Record<string, unknown>[]);
+  await seedSheet('Escenografia', SEED_ESCENOGRAFIA as unknown as Record<string, unknown>[]);
+  await seedSheet('Personas', SEED_PEOPLE as unknown as Record<string, unknown>[]);
+  await seedSheet('Notas', []);
+  await seedSheet('Chat', []);
+  await seedSheet('Asignaciones', []);
 }

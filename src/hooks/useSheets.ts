@@ -1,30 +1,52 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
+import type { SheetTab } from '../types';
+import { readCache } from '../api/sheetsClient';
 
 interface UseDataResult<T> {
   data: T[];
   loading: boolean;
+  syncing: boolean;
   error: string | null;
   refetch: () => Promise<void>;
 }
 
 export function useData<T>(
   fetchFn: () => Promise<T[]>,
-  deps: unknown[] = []
+  deps: unknown[] = [],
+  cacheTab?: SheetTab
 ): UseDataResult<T> {
-  const [data, setData] = useState<T[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState<T[]>(() =>
+    cacheTab ? readCache<T>(cacheTab) : []
+  );
+  const [loading, setLoading] = useState(() =>
+    cacheTab ? readCache(cacheTab).length === 0 : true
+  );
+  const [syncing, setSyncing] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const mountedRef = useRef(true);
+
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => { mountedRef.current = false; };
+  }, []);
 
   const refetch = useCallback(async () => {
-    setLoading(true);
     setError(null);
+    setSyncing(true);
     try {
       const result = await fetchFn();
-      setData(result);
+      if (mountedRef.current) {
+        setData(result);
+      }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Error desconocido');
+      if (mountedRef.current) {
+        setError(err instanceof Error ? err.message : 'Error desconocido');
+      }
     } finally {
-      setLoading(false);
+      if (mountedRef.current) {
+        setLoading(false);
+        setSyncing(false);
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
@@ -33,5 +55,5 @@ export function useData<T>(
     refetch();
   }, [refetch]);
 
-  return { data, loading, error, refetch };
+  return { data, loading, syncing, error, refetch };
 }

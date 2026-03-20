@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 import type { Person } from '../types';
 import { fetchPeople } from '../api/peopleApi';
+import { readCache } from '../api/sheetsClient';
 
 interface AppContextType {
   currentUser: Person | null;
@@ -13,7 +14,7 @@ const AppContext = createContext<AppContextType | null>(null);
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [currentUser, setCurrentUserState] = useState<Person | null>(null);
-  const [people, setPeople] = useState<Person[]>([]);
+  const [people, setPeople] = useState<Person[]>(() => readCache<Person>('Personas'));
 
   const refreshPeople = async () => {
     const result = await fetchPeople();

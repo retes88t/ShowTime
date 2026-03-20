@@ -30,14 +30,14 @@ export function SceneDetailPage() {
   const { id } = useParams<{ id: string }>();
   const [activeTab, setActiveTab] = useState<TabId>('contexto');
 
-  const { data: scenes, loading: scenesLoading } = useScenes();
+  const { data: scenes, loading: scenesLoading, syncing } = useScenes();
   const { data: materials, refetch: refetchMaterials } = useMaterials(id);
   const { data: escenografia, refetch: refetchEscenografia } = useEscenografia(id);
   const { data: assignments, refetch: refetchAssignments } = useAssignments(id);
   const { data: notes, refetch: refetchNotes } = useNotes(id);
   const { messages, loading: chatLoading, refetch: refetchChat } = useChat(id || '');
 
-  if (scenesLoading) return <Spinner />;
+  if (scenesLoading && scenes.length === 0) return <Spinner />;
 
   const scene = scenes.find((s) => s.id === id);
   if (!scene) return <Navigate to="/" replace />;
@@ -47,6 +47,12 @@ export function SceneDetailPage() {
       <SceneHeader scene={scene} totalScenes={scenes.length} scenes={scenes} />
 
       <div className="mx-auto max-w-5xl px-4 py-6">
+        {syncing && (
+          <div className="mb-3 flex items-center gap-2 text-xs text-gray-400">
+            <div className="h-3 w-3 animate-spin rounded-full border-2 border-gold border-t-transparent" />
+            Sincronizando...
+          </div>
+        )}
         {/* Tabs */}
         <div className="mb-6 flex gap-1 overflow-x-auto rounded-lg bg-gray-100 p-1">
           {TABS.map((tab) => (
