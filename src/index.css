@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  /* El Principito palette */
+  --color-gold: #F5C542;
+  --color-gold-light: #FCEABB;
+  --color-gold-dark: #D4A017;
+  --color-night: #1B1F3B;
+  --color-night-light: #2D325A;
+  --color-night-lighter: #3E4478;
+  --color-star: #FFF8DC;
+  --color-rose: #E8567F;
+  --color-rose-light: #F5A0B8;
+  --color-desert: #EDC9AF;
+  --color-desert-light: #F5E1CF;
+  --color-sky: #87CEEB;
+  --color-sky-dark: #5BA3C9;
+  --color-green-planet: #6BCB77;
+  --color-purple-planet: #9B59B6;
+  --color-orange-planet: #E67E22;
+  --color-red-planet: #E74C3C;
+  --color-blue-planet: #3498DB;
+  --color-teal-planet: #1ABC9C;
+
+  --color-scene-1: #87CEEB;
+  --color-scene-2: #3498DB;
+  --color-scene-3: #E8567F;
+  --color-scene-4: #1ABC9C;
+  --color-scene-5: #E67E22;
+  --color-scene-6: #9B59B6;
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.bg-stars {
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, var(--color-star), transparent),
+    radial-gradient(2px 2px at 40px 70px, var(--color-gold-light), transparent),
+    radial-gradient(1px 1px at 90px 40px, var(--color-star), transparent),
+    radial-gradient(1px 1px at 130px 80px, var(--color-star), transparent),
+    radial-gradient(2px 2px at 160px 30px, var(--color-gold-light), transparent),
+    radial-gradient(1px 1px at 200px 60px, var(--color-star), transparent),
+    radial-gradient(2px 2px at 250px 20px, var(--color-star), transparent),
+    radial-gradient(1px 1px at 290px 90px, var(--color-gold-light), transparent),
+    radial-gradient(1px 1px at 340px 50px, var(--color-star), transparent),
+    radial-gradient(2px 2px at 380px 70px, var(--color-star), transparent);
+  background-size: 400px 100px;
+  background-color: var(--color-night);
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.animate-twinkle {
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+}
