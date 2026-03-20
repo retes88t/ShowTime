@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import { AppProvider } from './context/AppContext';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
@@ -9,7 +9,7 @@ import { NotFoundPage } from './pages/NotFoundPage';
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <AppProvider>
         <div className="flex min-h-screen flex-col">
           <Header />
@@ -24,7 +24,7 @@ function App() {
           <Footer />
         </div>
       </AppProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
