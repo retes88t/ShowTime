@@ -35,7 +35,9 @@ function readTab(tabName) {
 }
 
 // ==================== ESCRITURA (POST) ====================
-var ADMIN_PASSWORD = 'showtime2026';
+// La contraseña se configura en Propiedades del script:
+//   Menu: Proyecto > Configuracion > Propiedades del script
+//   Clave: ADMIN_PASSWORD   Valor: (tu contraseña)
 
 function doPost(e) {
   var body = JSON.parse(e.postData.contents);
@@ -44,8 +46,9 @@ function doPost(e) {
   var tabName = body.tab;
   var data = body.data;
 
-  // Validar contraseña de admin
-  if (password !== ADMIN_PASSWORD) {
+  // Validar contraseña de admin desde propiedades del script
+  var adminPassword = PropertiesService.getScriptProperties().getProperty('ADMIN_PASSWORD');
+  if (!adminPassword || password !== adminPassword) {
     return jsonResponse({ success: false, error: 'Contraseña incorrecta' });
   }
 

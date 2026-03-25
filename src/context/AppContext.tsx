@@ -1,13 +1,11 @@
 import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 import type { Person } from '../types';
 import { fetchPeople } from '../api/peopleApi';
-import { readCache } from '../api/sheetsClient';
-
-const ADMIN_PASSWORD = 'showtime2026';
+import { readCache, setAdminPassword, clearAdminPassword, writeSheet } from '../api/sheetsClient';
 
 interface AppContextType {
   isAdmin: boolean;
-  loginAdmin: (password: string) => boolean;
+  loginAdmin: (password: string) => Promise<boolean>;
   logoutAdmin: () => void;
   people: Person[];
   refreshPeople: () => Promise<void>;
@@ -30,18 +28,34 @@ export function AppProvider({ children }: { children: ReactNode }) {
     refreshPeople();
   }, []);
 
-  const loginAdmin = (password: string): boolean => {
-    if (password === ADMIN_PASSWORD) {
-      setIsAdmin(true);
-      localStorage.setItem('showtime_admin', 'true');
-      return true;
+  const loginAdmin = async (password: string): Promise<boolean> => {
+    // Guardar la contraseña temporalmente para probarla
+    setAdminPassword(password);
+    try {
+      // Intentar una operacion de escritura para validar la contraseña
+      await writeSheet('update', 'Personas', { id: '__auth_test__' });
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : '';
+      if (msg.includes('No hay datos') || msg.includes('No encontrado')) {
+        // La contraseña es correcta, la operacion fallo porque el ID no existe
+        setIsAdmin(true);
+        localStorage.setItem('showtime_admin', 'true');
+        return true;
+      }
+      // Contraseña incorrecta u otro error
+      clearAdminPassword();
+      return false;
     }
-    return false;
+    // Si no lanza error, la contraseña es correcta
+    setIsAdmin(true);
+    localStorage.setItem('showtime_admin', 'true');
+    return true;
   };
 
   const logoutAdmin = () => {
     setIsAdmin(false);
     localStorage.removeItem('showtime_admin');
+    clearAdminPassword();
   };
 
   return (

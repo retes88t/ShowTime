@@ -11,14 +11,22 @@ export function Header() {
 
   const isActive = (path: string) => location.pathname === path;
 
-  const handleLogin = (e: React.FormEvent) => {
+  const [loading, setLoading] = useState(false);
+
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (loginAdmin(password)) {
-      setShowLoginModal(false);
-      setPassword('');
-      setError('');
-    } else {
-      setError('Contraseña incorrecta');
+    setLoading(true);
+    try {
+      const ok = await loginAdmin(password);
+      if (ok) {
+        setShowLoginModal(false);
+        setPassword('');
+        setError('');
+      } else {
+        setError('Contraseña incorrecta');
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -113,9 +121,10 @@ export function Header() {
                 </button>
                 <button
                   type="submit"
-                  className="rounded-lg bg-gold px-4 py-2 text-sm font-medium text-night hover:bg-gold-dark"
+                  disabled={loading}
+                  className="rounded-lg bg-gold px-4 py-2 text-sm font-medium text-night hover:bg-gold-dark disabled:opacity-50"
                 >
-                  Entrar
+                  {loading ? 'Validando...' : 'Entrar'}
                 </button>
               </div>
             </form>
