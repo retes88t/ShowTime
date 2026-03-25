@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import type { ChatMessage } from '../../types';
 import { addMessage } from '../../api/chatApi';
-import { useAppContext } from '../../context/AppContext';
 import { EmptyState } from '../ui/EmptyState';
 
 interface MiniChatProps {
@@ -12,7 +11,7 @@ interface MiniChatProps {
 }
 
 export function MiniChat({ messages, escenaId, onRefresh, loading }: MiniChatProps) {
-  const { currentUser } = useAppContext();
+  const currentUser = null as { id: string; nombre: string } | null;
   const [text, setText] = useState('');
   const bottomRef = useRef<HTMLDivElement>(null);
 

@@ -20,7 +20,15 @@ export function AdminPage() {
   const [seeding, setSeeding] = useState(false);
   const { data: scenes, refetch: refetchScenes } = useScenes();
   const { data: noticias, refetch: refetchNoticias } = useNoticias();
-  const { refreshPeople } = useAppContext();
+  const { refreshPeople, isAdmin } = useAppContext();
+
+  if (!isAdmin) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-gray-50">
+        <p className="text-gray-500">Acceso restringido. Inicia sesion como admin desde el header.</p>
+      </div>
+    );
+  }
 
   const handleSeed = async () => {
     if (!confirm('Esto poblara datos iniciales (6 escenas, personas, y noticias de ejemplo). Continuar?')) return;

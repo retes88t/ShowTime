@@ -10,9 +10,10 @@ interface AssignmentPanelProps {
   assignments: Assignment[];
   escenaId: string;
   onRefresh: () => void;
+  isAdmin?: boolean;
 }
 
-export function AssignmentPanel({ assignments, escenaId, onRefresh }: AssignmentPanelProps) {
+export function AssignmentPanel({ assignments, escenaId, onRefresh, isAdmin }: AssignmentPanelProps) {
   const { people } = useAppContext();
   const [showModal, setShowModal] = useState(false);
   const [editing, setEditing] = useState<Assignment | null>(null);
@@ -67,16 +68,18 @@ export function AssignmentPanel({ assignments, escenaId, onRefresh }: Assignment
     <div>
       <div className="mb-4 flex items-center justify-between">
         <h3 className="text-lg font-semibold text-gray-900">Responsables y Tareas</h3>
-        <button
-          onClick={openAdd}
-          className="rounded-lg bg-gold px-4 py-2 text-sm font-medium text-night hover:bg-gold-dark"
-        >
-          + Asignar
-        </button>
+        {isAdmin && (
+          <button
+            onClick={openAdd}
+            className="rounded-lg bg-gold px-4 py-2 text-sm font-medium text-night hover:bg-gold-dark"
+          >
+            + Asignar
+          </button>
+        )}
       </div>
 
       {assignments.length === 0 ? (
-        <EmptyState message="No hay asignaciones para esta escena." action="Crear asignacion" onAction={openAdd} />
+        <EmptyState message="No hay asignaciones para esta escena." />
       ) : (
         <div className="space-y-3">
           {assignments.map((a) => (
@@ -92,18 +95,20 @@ export function AssignmentPanel({ assignments, escenaId, onRefresh }: Assignment
                   {a.fechaLimite && <span>Limite: {a.fechaLimite}</span>}
                 </div>
               </div>
-              <div className="flex gap-1">
-                <button onClick={() => openEdit(a)} className="rounded p-1 text-gray-400 hover:text-blue-600">
-                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                  </svg>
-                </button>
-                <button onClick={() => handleDelete(a.id)} className="rounded p-1 text-gray-400 hover:text-red-600">
-                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                  </svg>
-                </button>
-              </div>
+              {isAdmin && (
+                <div className="flex gap-1">
+                  <button onClick={() => openEdit(a)} className="rounded p-1 text-gray-400 hover:text-blue-600">
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    </svg>
+                  </button>
+                  <button onClick={() => handleDelete(a.id)} className="rounded p-1 text-gray-400 hover:text-red-600">
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                  </button>
+                </div>
+              )}
             </div>
           ))}
         </div>

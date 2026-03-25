@@ -4,24 +4,19 @@ import { useScenes } from '../hooks/useScenes';
 import { useMaterials } from '../hooks/useMaterials';
 import { useEscenografia } from '../hooks/useEscenografia';
 import { useAssignments } from '../hooks/useAssignments';
-import { useNotes } from '../hooks/useNotes';
-import { useChat } from '../hooks/useChat';
 import { SceneHeader } from '../components/scene/SceneHeader';
 import { SceneContext } from '../components/scene/SceneContext';
 import { MaterialsList } from '../components/scene/MaterialsList';
 import { ScenographyList } from '../components/scene/ScenographyList';
 import { AssignmentPanel } from '../components/scene/AssignmentPanel';
-import { NotesPanel } from '../components/scene/NotesPanel';
-import { MiniChat } from '../components/scene/MiniChat';
 import { Spinner } from '../components/ui/Spinner';
+import { useAppContext } from '../context/AppContext';
 
 const TABS = [
   { id: 'contexto', label: 'Contexto' },
   { id: 'materiales', label: 'Materiales' },
   { id: 'escenografia', label: 'Escenografia' },
   { id: 'responsables', label: 'Responsables' },
-  { id: 'notas', label: 'Notas' },
-  { id: 'chat', label: 'Chat' },
 ] as const;
 
 type TabId = (typeof TABS)[number]['id'];
@@ -29,13 +24,12 @@ type TabId = (typeof TABS)[number]['id'];
 export function SceneDetailPage() {
   const { id } = useParams<{ id: string }>();
   const [activeTab, setActiveTab] = useState<TabId>('contexto');
+  const { isAdmin } = useAppContext();
 
   const { data: scenes, loading: scenesLoading, syncing } = useScenes();
   const { data: materials, refetch: refetchMaterials } = useMaterials(id);
   const { data: escenografia, refetch: refetchEscenografia } = useEscenografia(id);
   const { data: assignments, refetch: refetchAssignments } = useAssignments(id);
-  const { data: notes, refetch: refetchNotes } = useNotes(id);
-  const { messages, loading: chatLoading, refetch: refetchChat } = useChat(id || '');
 
   if (scenesLoading && scenes.length === 0) return <Spinner />;
 
@@ -74,19 +68,13 @@ export function SceneDetailPage() {
         <div>
           {activeTab === 'contexto' && <SceneContext scene={scene} />}
           {activeTab === 'materiales' && (
-            <MaterialsList materials={materials} escenaId={scene.id} onRefresh={refetchMaterials} />
+            <MaterialsList materials={materials} escenaId={scene.id} onRefresh={refetchMaterials} isAdmin={isAdmin} />
           )}
           {activeTab === 'escenografia' && (
-            <ScenographyList items={escenografia} escenaId={scene.id} onRefresh={refetchEscenografia} />
+            <ScenographyList items={escenografia} escenaId={scene.id} onRefresh={refetchEscenografia} isAdmin={isAdmin} />
           )}
           {activeTab === 'responsables' && (
-            <AssignmentPanel assignments={assignments} escenaId={scene.id} onRefresh={refetchAssignments} />
-          )}
-          {activeTab === 'notas' && (
-            <NotesPanel notes={notes} escenaId={scene.id} onRefresh={refetchNotes} />
-          )}
-          {activeTab === 'chat' && (
-            <MiniChat messages={messages} escenaId={scene.id} onRefresh={refetchChat} loading={chatLoading} />
+            <AssignmentPanel assignments={assignments} escenaId={scene.id} onRefresh={refetchAssignments} isAdmin={isAdmin} />
           )}
         </div>
       </div>

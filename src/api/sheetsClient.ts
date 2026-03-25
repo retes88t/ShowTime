@@ -1,6 +1,7 @@
 import type { SheetTab } from '../types';
 
 const APPS_SCRIPT_URL = import.meta.env.VITE_APPS_SCRIPT_URL;
+const ADMIN_PASSWORD = 'showtime2026';
 
 function getUrl(): string {
   if (!APPS_SCRIPT_URL) {
@@ -50,7 +51,7 @@ export async function writeSheet(
 ): Promise<{ success: boolean; id?: string }> {
   const response = await fetch(getUrl(), {
     method: 'POST',
-    body: JSON.stringify({ action, tab, data }),
+    body: JSON.stringify({ action, tab, data, password: ADMIN_PASSWORD }),
   });
 
   if (!response.ok) {
@@ -71,7 +72,7 @@ export async function seedSheet(
 ): Promise<void> {
   const response = await fetch(getUrl(), {
     method: 'POST',
-    body: JSON.stringify({ action: 'seed', tab, data: rows }),
+    body: JSON.stringify({ action: 'seed', tab, data: rows, password: ADMIN_PASSWORD }),
   });
 
   if (!response.ok) {

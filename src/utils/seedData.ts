@@ -189,7 +189,5 @@ export async function seedAllData(): Promise<void> {
   await seedSheet('Escenografia', SEED_ESCENOGRAFIA as unknown as Record<string, unknown>[]);
   await seedSheet('Personas', SEED_PEOPLE as unknown as Record<string, unknown>[]);
   await seedSheet('Noticias', SEED_NOTICIAS as unknown as Record<string, unknown>[]);
-  await seedSheet('Notas', []);
-  await seedSheet('Chat', []);
   await seedSheet('Asignaciones', []);
 }

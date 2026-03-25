@@ -3,9 +3,12 @@ import type { Person } from '../types';
 import { fetchPeople } from '../api/peopleApi';
 import { readCache } from '../api/sheetsClient';
 
+const ADMIN_PASSWORD = 'showtime2026';
+
 interface AppContextType {
-  currentUser: Person | null;
-  setCurrentUser: (user: Person | null) => void;
+  isAdmin: boolean;
+  loginAdmin: (password: string) => boolean;
+  logoutAdmin: () => void;
   people: Person[];
   refreshPeople: () => Promise<void>;
 }
@@ -13,7 +16,9 @@ interface AppContextType {
 const AppContext = createContext<AppContextType | null>(null);
 
 export function AppProvider({ children }: { children: ReactNode }) {
-  const [currentUser, setCurrentUserState] = useState<Person | null>(null);
+  const [isAdmin, setIsAdmin] = useState(() => {
+    return localStorage.getItem('showtime_admin') === 'true';
+  });
   const [people, setPeople] = useState<Person[]>(() => readCache<Person>('Personas'));
 
   const refreshPeople = async () => {
@@ -23,28 +28,24 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     refreshPeople();
-
-    const saved = localStorage.getItem('showtime_currentUser');
-    if (saved) {
-      try {
-        setCurrentUserState(JSON.parse(saved));
-      } catch {
-        // ignore invalid data
-      }
-    }
   }, []);
 
-  const setCurrentUser = (user: Person | null) => {
-    setCurrentUserState(user);
-    if (user) {
-      localStorage.setItem('showtime_currentUser', JSON.stringify(user));
-    } else {
-      localStorage.removeItem('showtime_currentUser');
+  const loginAdmin = (password: string): boolean => {
+    if (password === ADMIN_PASSWORD) {
+      setIsAdmin(true);
+      localStorage.setItem('showtime_admin', 'true');
+      return true;
     }
+    return false;
+  };
+
+  const logoutAdmin = () => {
+    setIsAdmin(false);
+    localStorage.removeItem('showtime_admin');
   };
 
   return (
-    <AppContext.Provider value={{ currentUser, setCurrentUser, people, refreshPeople }}>
+    <AppContext.Provider value={{ isAdmin, loginAdmin, logoutAdmin, people, refreshPeople }}>
       {children}
     </AppContext.Provider>
   );

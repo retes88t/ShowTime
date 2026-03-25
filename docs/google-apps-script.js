@@ -35,11 +35,19 @@ function readTab(tabName) {
 }
 
 // ==================== ESCRITURA (POST) ====================
+var ADMIN_PASSWORD = 'showtime2026';
+
 function doPost(e) {
   var body = JSON.parse(e.postData.contents);
+  var password = body.password;
   var action = body.action;
   var tabName = body.tab;
   var data = body.data;
+
+  // Validar contraseña de admin
+  if (password !== ADMIN_PASSWORD) {
+    return jsonResponse({ success: false, error: 'Contraseña incorrecta' });
+  }
 
   var sheet = SpreadsheetApp.openById(SHEET_ID);
   var tab = sheet.getSheetByName(tabName);

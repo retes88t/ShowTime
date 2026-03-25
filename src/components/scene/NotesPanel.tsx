@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import type { Note } from '../../types';
 import { addNote, deleteNote } from '../../api/notesApi';
-import { useAppContext } from '../../context/AppContext';
 import { EmptyState } from '../ui/EmptyState';
 
 interface NotesPanelProps {
@@ -11,7 +10,7 @@ interface NotesPanelProps {
 }
 
 export function NotesPanel({ notes, escenaId, onRefresh }: NotesPanelProps) {
-  const { currentUser } = useAppContext();
+  const currentUser = null as { id: string; nombre: string } | null;
   const [content, setContent] = useState('');
 
   const handleAdd = async (e: React.FormEvent) => {

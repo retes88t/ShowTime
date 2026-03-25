@@ -3,90 +3,125 @@ import { Link, useLocation } from 'react-router-dom';
 import { useAppContext } from '../../context/AppContext';
 
 export function Header() {
-  const { currentUser, setCurrentUser, people } = useAppContext();
-  const [showUserMenu, setShowUserMenu] = useState(false);
+  const { isAdmin, loginAdmin, logoutAdmin } = useAppContext();
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const location = useLocation();
 
   const isActive = (path: string) => location.pathname === path;
 
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (loginAdmin(password)) {
+      setShowLoginModal(false);
+      setPassword('');
+      setError('');
+    } else {
+      setError('Contraseña incorrecta');
+    }
+  };
+
   return (
-    <header className="sticky top-0 z-40 border-b border-night-lighter bg-night/95 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
-        <div className="flex items-center gap-6">
-          <Link to="/" className="flex items-center gap-2">
-            <span className="text-2xl">&#9733;</span>
-            <span className="text-xl font-bold text-gold">ShowTime</span>
-          </Link>
-          <nav className="hidden items-center gap-4 md:flex">
-            <Link
-              to="/"
-              className={`rounded-lg px-3 py-2 text-sm font-medium transition ${
-                isActive('/') ? 'bg-night-lighter text-gold' : 'text-gray-300 hover:text-gold'
-              }`}
-            >
-              Inicio
+    <>
+      <header className="sticky top-0 z-40 border-b border-night-lighter bg-night/95 backdrop-blur">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
+          <div className="flex items-center gap-6">
+            <Link to="/" className="flex items-center gap-2">
+              <span className="text-2xl">&#9733;</span>
+              <span className="text-xl font-bold text-gold">ShowTime</span>
             </Link>
-            <Link
-              to="/estructura"
-              className={`rounded-lg px-3 py-2 text-sm font-medium transition ${
-                isActive('/estructura') ? 'bg-night-lighter text-gold' : 'text-gray-300 hover:text-gold'
-              }`}
-            >
-              Contexto
-            </Link>
-            <Link
-              to="/admin"
-              className={`rounded-lg px-3 py-2 text-sm font-medium transition ${
-                isActive('/admin') ? 'bg-night-lighter text-gold' : 'text-gray-300 hover:text-gold'
-              }`}
-            >
-              Admin
-            </Link>
-          </nav>
-        </div>
-
-        <div className="relative">
-          <button
-            onClick={() => setShowUserMenu(!showUserMenu)}
-            className="flex items-center gap-2 rounded-lg border border-night-lighter px-3 py-2 text-sm text-gray-300 transition hover:border-gold hover:text-gold"
-          >
-            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-            </svg>
-            {currentUser ? currentUser.nombre : 'Seleccionar usuario'}
-          </button>
-
-          {showUserMenu && (
-            <div className="absolute right-0 top-full mt-2 w-56 rounded-lg border border-night-lighter bg-night-light p-2 shadow-xl">
-              <p className="mb-2 px-2 text-xs font-medium uppercase text-gray-400">
-                Quien eres?
-              </p>
-              {people.filter(p => p.activo).map((person) => (
-                <button
-                  key={person.id}
-                  onClick={() => {
-                    setCurrentUser(person);
-                    setShowUserMenu(false);
-                  }}
-                  className={`w-full rounded-md px-3 py-2 text-left text-sm transition ${
-                    currentUser?.id === person.id
-                      ? 'bg-gold/20 text-gold'
-                      : 'text-gray-300 hover:bg-night-lighter hover:text-white'
+            <nav className="hidden items-center gap-4 md:flex">
+              <Link
+                to="/"
+                className={`rounded-lg px-3 py-2 text-sm font-medium transition ${
+                  isActive('/') ? 'bg-night-lighter text-gold' : 'text-gray-300 hover:text-gold'
+                }`}
+              >
+                Inicio
+              </Link>
+              <Link
+                to="/estructura"
+                className={`rounded-lg px-3 py-2 text-sm font-medium transition ${
+                  isActive('/estructura') ? 'bg-night-lighter text-gold' : 'text-gray-300 hover:text-gold'
+                }`}
+              >
+                Contexto
+              </Link>
+              {isAdmin && (
+                <Link
+                  to="/admin"
+                  className={`rounded-lg px-3 py-2 text-sm font-medium transition ${
+                    isActive('/admin') ? 'bg-night-lighter text-gold' : 'text-gray-300 hover:text-gold'
                   }`}
                 >
-                  <div className="font-medium">{person.nombre}</div>
-                  <div className="text-xs text-gray-400">{person.rol}</div>
-                </button>
-              ))}
-              {people.length === 0 && (
-                <p className="px-2 py-4 text-center text-xs text-gray-500">
-                  No hay personas registradas. Ve a Admin para agregar.
-                </p>
+                  Admin
+                </Link>
               )}
-            </div>
-          )}
+            </nav>
+          </div>
+
+          <div>
+            {isAdmin ? (
+              <button
+                onClick={logoutAdmin}
+                className="flex items-center gap-2 rounded-lg border border-rose/30 px-3 py-2 text-sm text-rose-light transition hover:border-rose hover:bg-rose/10"
+              >
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+                Salir Admin
+              </button>
+            ) : (
+              <button
+                onClick={() => setShowLoginModal(true)}
+                className="flex items-center gap-2 rounded-lg border border-night-lighter px-3 py-2 text-sm text-gray-300 transition hover:border-gold hover:text-gold"
+              >
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+                Admin
+              </button>
+            )}
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+
+      {/* Login Modal */}
+      {showLoginModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+          <div className="mx-4 w-full max-w-sm rounded-xl border border-night-lighter bg-night-light p-6 shadow-2xl">
+            <h2 className="mb-4 text-lg font-bold text-gold">Acceso Admin</h2>
+            <form onSubmit={handleLogin}>
+              <label className="mb-1 block text-sm text-gray-300">Contraseña</label>
+              <input
+                type="password"
+                autoFocus
+                value={password}
+                onChange={(e) => { setPassword(e.target.value); setError(''); }}
+                className="mb-2 w-full rounded-lg border border-night-lighter bg-night px-3 py-2 text-sm text-white focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold"
+                placeholder="Ingresa la contraseña"
+              />
+              {error && <p className="mb-2 text-xs text-rose">{error}</p>}
+              <div className="mt-4 flex justify-end gap-2">
+                <button
+                  type="button"
+                  onClick={() => { setShowLoginModal(false); setPassword(''); setError(''); }}
+                  className="rounded-lg border border-night-lighter px-4 py-2 text-sm text-gray-300 hover:bg-night"
+                >
+                  Cancelar
+                </button>
+                <button
+                  type="submit"
+                  className="rounded-lg bg-gold px-4 py-2 text-sm font-medium text-night hover:bg-gold-dark"
+                >
+                  Entrar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
