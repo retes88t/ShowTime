@@ -32,7 +32,7 @@ export function Header() {
                 isActive('/estructura') ? 'bg-night-lighter text-gold' : 'text-gray-300 hover:text-gold'
               }`}
             >
-              Estructura y Personajes
+              Contexto
             </Link>
             <Link
               to="/admin"

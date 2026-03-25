@@ -24,7 +24,7 @@ export function EstructuraPage() {
         </div>
         <div className="relative z-10">
           <h1 className="text-3xl font-bold text-gold md:text-4xl">
-            Estructura y Personajes
+            Contexto
           </h1>
           <p className="mt-2 text-sm text-desert-light">
             &laquo;Lo esencial es invisible a los ojos&raquo;

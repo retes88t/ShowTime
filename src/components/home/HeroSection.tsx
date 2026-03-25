@@ -45,7 +45,7 @@ export function HeroSection({ noticias }: HeroSectionProps) {
             className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-5 py-2 text-sm font-medium text-gold transition hover:bg-gold/20"
           >
             <span>&#127917;</span>
-            Estructura y Personajes
+            Contexto
           </Link>
           <Link
             to="/libreto"
