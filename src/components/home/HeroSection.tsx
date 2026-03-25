@@ -8,7 +8,7 @@ interface HeroSectionProps {
 
 export function HeroSection({ noticias }: HeroSectionProps) {
   return (
-    <section className="bg-stars relative overflow-hidden px-4 py-20 text-center">
+    <section className="bg-stars relative overflow-hidden px-4 py-10 text-center">
       {/* Decorative stars */}
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(20)].map((_, i) => (
@@ -28,18 +28,25 @@ export function HeroSection({ noticias }: HeroSectionProps) {
       </div>
 
       <div className="relative z-10 mx-auto max-w-3xl">
-        <div className="mb-6 text-6xl">&#9733;</div>
+        <div className="mb-4 text-5xl text-yellow-400">&#9733;</div>
         <h1 className="mb-4 text-5xl font-bold text-gold md:text-6xl">
           El Principito
         </h1>
         <p className="text-lg text-desert-light">
           &laquo;Lo esencial es invisible a los ojos&raquo;
         </p>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
           <div className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-night-light/50 px-5 py-2 text-sm text-gray-300">
             <span className="h-2 w-2 rounded-full bg-green-planet" />
             Basado en El Principito &mdash; 6 Escenas
           </div>
+          <Link
+            to="/estructura"
+            className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-5 py-2 text-sm font-medium text-gold transition hover:bg-gold/20"
+          >
+            <span>&#127917;</span>
+            Estructura y Personajes
+          </Link>
           <Link
             to="/libreto"
             className="inline-flex items-center gap-2 rounded-full border border-rose/40 bg-rose/10 px-5 py-2 text-sm font-medium text-rose transition hover:bg-rose/20"

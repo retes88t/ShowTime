@@ -6,6 +6,7 @@ import { HomePage } from './pages/HomePage';
 import { SceneDetailPage } from './pages/SceneDetailPage';
 import { AdminPage } from './pages/AdminPage';
 import { LibretoPage } from './pages/LibretoPage';
+import { EstructuraPage } from './pages/EstructuraPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/escena/:id" element={<SceneDetailPage />} />
+              <Route path="/estructura" element={<EstructuraPage />} />
               <Route path="/libreto" element={<LibretoPage />} />
               <Route path="/admin" element={<AdminPage />} />
               <Route path="*" element={<NotFoundPage />} />

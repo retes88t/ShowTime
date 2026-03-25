@@ -27,6 +27,14 @@ export function Header() {
               Inicio
             </Link>
             <Link
+              to="/estructura"
+              className={`rounded-lg px-3 py-2 text-sm font-medium transition ${
+                isActive('/estructura') ? 'bg-night-lighter text-gold' : 'text-gray-300 hover:text-gold'
+              }`}
+            >
+              Estructura y Personajes
+            </Link>
+            <Link
               to="/admin"
               className={`rounded-lg px-3 py-2 text-sm font-medium transition ${
                 isActive('/admin') ? 'bg-night-lighter text-gold' : 'text-gray-300 hover:text-gold'

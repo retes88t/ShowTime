@@ -1,6 +1,5 @@
 import { HeroSection } from '../components/home/HeroSection';
 import { SceneGrid } from '../components/home/SceneGrid';
-import { NarrativeSection } from '../components/home/NarrativeSection';
 import { useScenes } from '../hooks/useScenes';
 import { useNoticias } from '../hooks/useNoticias';
 
@@ -11,7 +10,6 @@ export function HomePage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <HeroSection noticias={noticias} />
-      <NarrativeSection />
       <SceneGrid scenes={scenes} loading={loading && scenes.length === 0} syncing={syncing} />
     </div>
   );
