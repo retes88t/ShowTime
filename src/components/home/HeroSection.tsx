@@ -1,4 +1,12 @@
-export function HeroSection() {
+import { Link } from 'react-router-dom';
+import type { Noticia } from '../../types';
+import { NewsSection } from './NewsSection';
+
+interface HeroSectionProps {
+  noticias: Noticia[];
+}
+
+export function HeroSection({ noticias }: HeroSectionProps) {
   return (
     <section className="bg-stars relative overflow-hidden px-4 py-20 text-center">
       {/* Decorative stars */}
@@ -22,18 +30,27 @@ export function HeroSection() {
       <div className="relative z-10 mx-auto max-w-3xl">
         <div className="mb-6 text-6xl">&#9733;</div>
         <h1 className="mb-4 text-5xl font-bold text-gold md:text-6xl">
-          ShowTime
+          El Principito
         </h1>
-        <p className="mb-2 text-xl text-gold-light md:text-2xl">
-          Administracion de Produccion
-        </p>
         <p className="text-lg text-desert-light">
           &laquo;Lo esencial es invisible a los ojos&raquo;
         </p>
-        <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-gold/30 bg-night-light/50 px-5 py-2 text-sm text-gray-300">
-          <span className="h-2 w-2 rounded-full bg-green-planet" />
-          Basado en El Principito &mdash; 6 Escenas
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <div className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-night-light/50 px-5 py-2 text-sm text-gray-300">
+            <span className="h-2 w-2 rounded-full bg-green-planet" />
+            Basado en El Principito &mdash; 6 Escenas
+          </div>
+          <Link
+            to="/libreto"
+            className="inline-flex items-center gap-2 rounded-full border border-rose/40 bg-rose/10 px-5 py-2 text-sm font-medium text-rose transition hover:bg-rose/20"
+          >
+            <span>&#128214;</span>
+            Ver Libreto
+          </Link>
         </div>
+
+        {/* News Section */}
+        <NewsSection noticias={noticias} />
       </div>
     </section>
   );

@@ -25,6 +25,8 @@ const emptyForm = {
   parodia: '',
   imagenUrl: '',
   color: SCENE_COLORS[0],
+  acto: '',
+  lugar: '',
 };
 
 export function ScenesManager({ scenes, onRefresh }: ScenesManagerProps) {
@@ -55,6 +57,8 @@ export function ScenesManager({ scenes, onRefresh }: ScenesManagerProps) {
       parodia: s.parodia,
       imagenUrl: s.imagenUrl,
       color: s.color,
+      acto: s.acto,
+      lugar: s.lugar,
     });
     setShowModal(true);
   };
@@ -171,6 +175,28 @@ export function ScenesManager({ scenes, onRefresh }: ScenesManagerProps) {
               onChange={(e) => setForm({ ...form, subtitulo: e.target.value })}
               className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold"
             />
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">Acto</label>
+              <input
+                type="text"
+                value={form.acto}
+                onChange={(e) => setForm({ ...form, acto: e.target.value })}
+                placeholder="Ej: Acto 1. La Tierra"
+                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold"
+              />
+            </div>
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">Lugar</label>
+              <input
+                type="text"
+                value={form.lugar}
+                onChange={(e) => setForm({ ...form, lugar: e.target.value })}
+                placeholder="Ej: Salon Verde Vekio"
+                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold"
+              />
+            </div>
           </div>
           <div>
             <label className="mb-1 block text-sm font-medium text-gray-700">Descripcion</label>

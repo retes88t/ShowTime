@@ -14,6 +14,16 @@ export interface Scene {
   parodia: string;
   imagenUrl: string;
   color: string;
+  acto: string;
+  lugar: string;
+}
+
+export interface Noticia {
+  id: string;
+  titulo: string;
+  contenido: string;
+  fechaCreacion: string;
+  activa: boolean;
 }
 
 export interface Material {
@@ -73,4 +83,4 @@ export interface Assignment {
   fechaLimite: string;
 }
 
-export type SheetTab = 'Escenas' | 'Materiales' | 'Escenografia' | 'Personas' | 'Notas' | 'Chat' | 'Asignaciones';
+export type SheetTab = 'Escenas' | 'Materiales' | 'Escenografia' | 'Personas' | 'Notas' | 'Chat' | 'Asignaciones' | 'Noticias';

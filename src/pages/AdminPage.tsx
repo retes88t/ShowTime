@@ -1,13 +1,16 @@
 import { useState } from 'react';
 import { useScenes } from '../hooks/useScenes';
+import { useNoticias } from '../hooks/useNoticias';
 import { PeopleManager } from '../components/admin/PeopleManager';
 import { ScenesManager } from '../components/admin/ScenesManager';
+import { NoticiasManager } from '../components/admin/NoticiasManager';
 import { seedAllData } from '../utils/seedData';
 import { useAppContext } from '../context/AppContext';
 
 const TABS = [
   { id: 'personas', label: 'Personas' },
   { id: 'escenas', label: 'Escenas' },
+  { id: 'noticias', label: 'Noticias' },
 ] as const;
 
 type TabId = (typeof TABS)[number]['id'];
@@ -16,15 +19,17 @@ export function AdminPage() {
   const [activeTab, setActiveTab] = useState<TabId>('personas');
   const [seeding, setSeeding] = useState(false);
   const { data: scenes, refetch: refetchScenes } = useScenes();
+  const { data: noticias, refetch: refetchNoticias } = useNoticias();
   const { refreshPeople } = useAppContext();
 
   const handleSeed = async () => {
-    if (!confirm('Esto poblara datos iniciales (6 escenas y personas de ejemplo). Continuar?')) return;
+    if (!confirm('Esto poblara datos iniciales (6 escenas, personas, y noticias de ejemplo). Continuar?')) return;
     setSeeding(true);
     try {
       await seedAllData();
       await refetchScenes();
       await refreshPeople();
+      await refetchNoticias();
     } finally {
       setSeeding(false);
     }
@@ -37,7 +42,7 @@ export function AdminPage() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-bold text-gray-900">Administracion</h1>
-              <p className="text-sm text-gray-500">Gestiona personas, escenas y datos de la obra</p>
+              <p className="text-sm text-gray-500">Gestiona personas, escenas, noticias y datos de la obra</p>
             </div>
             <button
               onClick={handleSeed}
@@ -70,6 +75,7 @@ export function AdminPage() {
 
         {activeTab === 'personas' && <PeopleManager />}
         {activeTab === 'escenas' && <ScenesManager scenes={scenes} onRefresh={refetchScenes} />}
+        {activeTab === 'noticias' && <NoticiasManager noticias={noticias} onRefresh={refetchNoticias} />}
       </div>
     </div>
   );

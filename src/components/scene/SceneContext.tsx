@@ -11,6 +11,8 @@ export function SceneContext({ scene }: SceneContextProps) {
     { label: 'Conflicto', value: scene.conflicto },
     { label: 'Objetivos', value: scene.objetivos },
     { label: 'Parodia', value: scene.parodia },
+    { label: 'Acto', value: scene.acto },
+    { label: 'Lugar', value: scene.lugar },
   ];
 
   const lines = [

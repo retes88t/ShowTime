@@ -1,13 +1,6 @@
-Quiero hacer una aplicacion en react usando vite
-Quiero una aplicacion web que administre una obra de teatro
-utiliza el "DocumentoProduccion.md" para basarte
-quiero que vacíes y se administre todo el tema de base de datos sea utilizando este documento de google: https://docs.google.com/spreadsheets/d/1f_b9KGVi1wQ3MELymX00xn4uB8wtwbAVPKg4ILfQlfc/edit?usp=sharing
-
-Quisiera que tuviera una pantalla principal con imagenes referentes al principito
-
-bajando que tenga un grid de 3 columnas donde se vea con un cuadro el cual represente una escena de las obtenidas en el documentoproduccion
-
-al darle click a una escena, ir al detalle de una escena donde se muestre todo el contexto de la escena.
-dentro del detalle que se muestre y se pueda administrar el detalle de materiales, cosas necesarias para el escenario. poder asignar responsables. agregar notas. incluso un mini chat por escena
-
-dentro del menu contextual haya un apartado de administracion de la aplicacion, donde pueda administrar personas (para lo de responsables), escenas
+1. Haz una actualizacion de toda la aplicación y estructura de datos utilizando Actualización02.md
+2. modifica el seeddata y agrega los elementos nuevos que aparezcan en el documento
+3. agrega en web los elementos nuevos agregados como las estructura narrativa, Personajes
+4. agrega en la pantalla principal un boton que lleve al libreto (libreto.md). si puedes dale formato bonito y la oportunidad de bajarlo en PDF
+5. en la pantala principal donde se pone el título agrega una seccion de noticias. para eso crea el modelo y agregalo a la base de datos. coloca una noticia de prueba que sea: "Audiciones este Jueves 26 de Marzo y Reunion de Produccion"
+6. Las noticias dame la oportunidad de administrarlas desde la pantalla de administracion
