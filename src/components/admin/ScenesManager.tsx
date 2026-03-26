@@ -243,6 +243,19 @@ export function ScenesManager({ scenes, onRefresh }: ScenesManagerProps) {
               className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold"
             />
           </div>
+          <div>
+            <label className="mb-1 block text-sm font-medium text-gray-700">Imagen URL</label>
+            <input
+              type="url"
+              value={form.imagenUrl}
+              onChange={(e) => setForm({ ...form, imagenUrl: e.target.value })}
+              placeholder="https://ejemplo.com/imagen.jpg"
+              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold"
+            />
+            {form.imagenUrl && (
+              <img src={form.imagenUrl} alt="Vista previa" className="mt-2 h-24 w-auto rounded-lg object-cover" onError={(e) => (e.currentTarget.style.display = 'none')} />
+            )}
+          </div>
           <div className="grid grid-cols-1 gap-4">
             <div>
               <label className="mb-1 block text-sm font-medium text-gray-700">Linea de entrada</label>
