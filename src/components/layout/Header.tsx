@@ -41,6 +41,7 @@ export function Header() {
     { to: '/audicion', label: 'Audiciones' },
     { to: '/ayuda-audiciones', label: 'Ayuda para Audiciones' },
     { to: '/libreto', label: 'Libreto' },
+    { to: '/tareas', label: 'Tareas' },
     ...(isAdmin ? [{ to: '/admin', label: 'Admin' }] : []),
   ];
 

@@ -83,4 +83,27 @@ export interface Assignment {
   fechaLimite: string;
 }
 
-export type SheetTab = 'Escenas' | 'Materiales' | 'Escenografia' | 'Personas' | 'Notas' | 'Chat' | 'Asignaciones' | 'Noticias';
+export type NivelTarea = 'facil' | 'dificil' | 'critico' | 'indispensable';
+export type EstadoTarea = 'pendiente' | 'en_progreso' | 'completada' | 'bloqueada';
+export type Probabilidad = 'baja' | 'media' | 'alta';
+
+export interface Tarea {
+  id: string;
+  titulo: string;
+  descripcion: string;
+  responsables: string; // CSV de IDs de personas
+  porcentaje: number;
+  fechaLimite: string;
+  nivel: NivelTarea;
+  estado: EstadoTarea;
+}
+
+export interface Riesgo {
+  id: string;
+  tareaId: string;
+  riesgo: string;
+  probabilidad: Probabilidad;
+  planes: string; // JSON array de strings
+}
+
+export type SheetTab = 'Escenas' | 'Materiales' | 'Escenografia' | 'Personas' | 'Notas' | 'Chat' | 'Asignaciones' | 'Noticias' | 'Tareas' | 'Riesgos';

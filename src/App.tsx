@@ -10,6 +10,7 @@ import { EstructuraPage } from './pages/EstructuraPage';
 import { AudicionPage } from './pages/AudicionPage';
 import { AudicionPersonajePage } from './pages/AudicionPersonajePage';
 import { AyudaAudicionesPage } from './pages/AyudaAudicionesPage';
+import { TareasPage } from './pages/TareasPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
               <Route path="/audicion" element={<AudicionPage />} />
               <Route path="/audicion/:personaje" element={<AudicionPersonajePage />} />
               <Route path="/ayuda-audiciones" element={<AyudaAudicionesPage />} />
+              <Route path="/tareas" element={<TareasPage />} />
               <Route path="/admin" element={<AdminPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>

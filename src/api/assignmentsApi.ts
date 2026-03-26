@@ -8,7 +8,7 @@ export async function fetchAssignments(escenaId?: string): Promise<Assignment[]>
 
 export async function addAssignment(assignment: Omit<Assignment, 'id'>): Promise<string> {
   const id = crypto.randomUUID();
-  const result = await writeSheet('add', 'Asignaciones', { ...assignment, id });
+  const result = await writeSheet('add', 'Asignaciones', { id, ...assignment });
   return result.id || id;
 }
 
