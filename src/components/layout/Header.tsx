@@ -39,6 +39,7 @@ export function Header() {
     { to: '/', label: 'Inicio' },
     { to: '/estructura', label: 'Contexto' },
     { to: '/audicion', label: 'Audiciones' },
+    { to: '/ayuda-audiciones', label: 'Ayuda para Audiciones' },
     { to: '/libreto', label: 'Libreto' },
     ...(isAdmin ? [{ to: '/admin', label: 'Admin' }] : []),
   ];

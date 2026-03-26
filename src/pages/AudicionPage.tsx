@@ -200,24 +200,6 @@ export function AudicionPage() {
             </p>
           </section>
 
-          {/* Ayuda para Audiciones */}
-          <section className="mb-8 print:mb-6">
-            <div className="rounded-xl border-2 border-gold bg-gradient-to-r from-gold/10 to-gold/5 p-5">
-              <div className="flex flex-col items-center gap-3 text-center sm:flex-row sm:text-left">
-                <span className="text-3xl">&#127917;</span>
-                <div className="flex-1">
-                  <h2 className="text-lg font-bold text-night">Ayuda para Audiciones</h2>
-                  <p className="mt-1 text-sm text-gray-600">
-                    Haz click en cualquier personaje para ver su material completo: dialogos del
-                    libreto, instrucciones de que hacer en la audicion, con quienes interactuas y
-                    tips para ser seleccionado.
-                  </p>
-                </div>
-                <span className="hidden text-2xl text-gold sm:block">&darr;</span>
-              </div>
-            </div>
-          </section>
-
           {/* Personajes */}
           <section className="mb-8 print:mb-6">
             <h2 className="mb-4 flex items-center gap-2 text-xl font-bold text-night print:text-lg">

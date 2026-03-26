@@ -9,6 +9,7 @@ import { LibretoPage } from './pages/LibretoPage';
 import { EstructuraPage } from './pages/EstructuraPage';
 import { AudicionPage } from './pages/AudicionPage';
 import { AudicionPersonajePage } from './pages/AudicionPersonajePage';
+import { AyudaAudicionesPage } from './pages/AyudaAudicionesPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
               <Route path="/libreto" element={<LibretoPage />} />
               <Route path="/audicion" element={<AudicionPage />} />
               <Route path="/audicion/:personaje" element={<AudicionPersonajePage />} />
+              <Route path="/ayuda-audiciones" element={<AyudaAudicionesPage />} />
               <Route path="/admin" element={<AdminPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
