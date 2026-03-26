@@ -56,6 +56,22 @@ export function Header() {
               >
                 Contexto
               </Link>
+              <Link
+                to="/audicion"
+                className={`rounded-lg px-3 py-2 text-sm font-medium transition ${
+                  isActive('/audicion') ? 'bg-night-lighter text-gold' : 'text-gray-300 hover:text-gold'
+                }`}
+              >
+                Audiciones
+              </Link>
+              <Link
+                to="/libreto"
+                className={`rounded-lg px-3 py-2 text-sm font-medium transition ${
+                  isActive('/libreto') ? 'bg-night-lighter text-gold' : 'text-gray-300 hover:text-gold'
+                }`}
+              >
+                Libreto
+              </Link>
               {isAdmin && (
                 <Link
                   to="/admin"
