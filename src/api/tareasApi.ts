@@ -24,12 +24,12 @@ export async function fetchTareas(): Promise<Tarea[]> {
 
 export async function addTarea(tarea: Omit<Tarea, 'id'>): Promise<string> {
   const id = crypto.randomUUID();
-  const result = await writeSheet('add', 'Tareas', toSheetData({ id, ...tarea }));
+  const result = await writeSheet('add', 'Tareas', toSheetData({ id, ...tarea } as unknown as Record<string, unknown>));
   return result.id || id;
 }
 
 export async function updateTarea(tarea: Tarea): Promise<void> {
-  await writeSheet('update', 'Tareas', toSheetData(tarea));
+  await writeSheet('update', 'Tareas', toSheetData(tarea as unknown as Record<string, unknown>));
 }
 
 export async function deleteTarea(id: string): Promise<void> {
