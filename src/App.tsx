@@ -8,6 +8,7 @@ import { AdminPage } from './pages/AdminPage';
 import { LibretoPage } from './pages/LibretoPage';
 import { EstructuraPage } from './pages/EstructuraPage';
 import { AudicionPage } from './pages/AudicionPage';
+import { AudicionPersonajePage } from './pages/AudicionPersonajePage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
               <Route path="/estructura" element={<EstructuraPage />} />
               <Route path="/libreto" element={<LibretoPage />} />
               <Route path="/audicion" element={<AudicionPage />} />
+              <Route path="/audicion/:personaje" element={<AudicionPersonajePage />} />
               <Route path="/admin" element={<AdminPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>

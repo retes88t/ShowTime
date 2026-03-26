@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 const PERSONAJES = [
   {
     nombre: 'Teodoro',
+    slug: 'teodoro',
     edad: '17-21 anos',
     tipo: 'Protagonista',
     descripcion:
@@ -13,6 +14,7 @@ const PERSONAJES = [
   },
   {
     nombre: 'Dr. Saint Exupery / Principito',
+    slug: 'dr-principe',
     edad: '30-40 anos',
     tipo: 'Co-protagonista',
     descripcion:
@@ -23,6 +25,7 @@ const PERSONAJES = [
   },
   {
     nombre: 'Capitan Nereo (Rey/Pirata)',
+    slug: 'capitan-nereo',
     edad: 'Abierta',
     tipo: 'Secundario',
     descripcion:
@@ -33,6 +36,7 @@ const PERSONAJES = [
   },
   {
     nombre: 'Dylan (El Vanidoso)',
+    slug: 'dylan',
     edad: 'Abierta',
     tipo: 'Secundario',
     descripcion:
@@ -43,6 +47,7 @@ const PERSONAJES = [
   },
   {
     nombre: 'Agente Catalina (La Geografa)',
+    slug: 'agente-catalina',
     edad: 'Abierta',
     tipo: 'Secundario',
     descripcion:
@@ -53,6 +58,7 @@ const PERSONAJES = [
   },
   {
     nombre: 'Baobabs / Constructores (x3)',
+    slug: 'baobabs',
     edad: 'Abierta',
     tipo: 'Antagonistas / Comicos',
     descripcion:
@@ -194,6 +200,24 @@ export function AudicionPage() {
             </p>
           </section>
 
+          {/* Ayuda para Audiciones */}
+          <section className="mb-8 print:mb-6">
+            <div className="rounded-xl border-2 border-gold bg-gradient-to-r from-gold/10 to-gold/5 p-5">
+              <div className="flex flex-col items-center gap-3 text-center sm:flex-row sm:text-left">
+                <span className="text-3xl">&#127917;</span>
+                <div className="flex-1">
+                  <h2 className="text-lg font-bold text-night">Ayuda para Audiciones</h2>
+                  <p className="mt-1 text-sm text-gray-600">
+                    Haz click en cualquier personaje para ver su material completo: dialogos del
+                    libreto, instrucciones de que hacer en la audicion, con quienes interactuas y
+                    tips para ser seleccionado.
+                  </p>
+                </div>
+                <span className="hidden text-2xl text-gold sm:block">&darr;</span>
+              </div>
+            </div>
+          </section>
+
           {/* Personajes */}
           <section className="mb-8 print:mb-6">
             <h2 className="mb-4 flex items-center gap-2 text-xl font-bold text-night print:text-lg">
@@ -201,9 +225,10 @@ export function AudicionPage() {
             </h2>
             <div className="grid gap-4 sm:grid-cols-2 print:grid-cols-2">
               {PERSONAJES.map((p) => (
-                <div
+                <Link
+                  to={`/audicion/${p.slug}`}
                   key={p.nombre}
-                  className={`rounded-xl border-l-4 p-4 ${p.color} print:break-inside-avoid`}
+                  className={`group rounded-xl border-l-4 p-4 transition-shadow hover:shadow-md ${p.color} print:break-inside-avoid`}
                 >
                   <div className="mb-1 flex items-center gap-2">
                     <span className="text-xl">{p.icon}</span>
@@ -221,7 +246,10 @@ export function AudicionPage() {
                   <p className="text-xs text-gray-500">
                     <strong>Aparece en:</strong> {p.escenas}
                   </p>
-                </div>
+                  <p className="mt-2 text-xs font-semibold text-gold-dark opacity-0 transition-opacity group-hover:opacity-100">
+                    Ver material de audicion &rarr;
+                  </p>
+                </Link>
               ))}
             </div>
           </section>
