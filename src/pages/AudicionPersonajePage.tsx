@@ -19,14 +19,14 @@ const PERSONAJES_DETALLE: Record<
   }
 > = {
   teodoro: {
-    nombre: 'Teodoro',
+    nombre: 'Teodoro (o Lucia)',
     icon: '\u26F8',
     edad: '17-21 anos',
     tipo: 'Protagonista',
     color: 'text-sky-dark',
     colorBg: 'bg-sky/10 border-sky',
     descripcion:
-      'Patinador artistico. Joven alegre y (ex) apasionado. Tras ganar una medalla de oro, ha dejado de disfrutar el patinaje. Asiste a terapia avergonzado buscando reconectar con su pasion.',
+      'Patinador artistico de hielo. Es cordial, perfeccionista y ex-apasionado. Se siente frustrado por la ejecucion de su rutina para la competencia proxima y la presion le ha provocado apatia por su profesion. Durante su travesia, va desarrollando su curiosidad y soltando sus propias exigencias.',
     contexto:
       'Teodoro es el corazon de la historia. Su arco va desde ser un joven obsesionado con la perfeccion y el control, hasta reconectar con la alegria y espontaneidad de patinar. A traves de los planetas, ve reflejados sus propios defectos en los personajes que encuentra: la obsesion por el control (Capitan Nereo), la vanidad y preocupacion por la imagen (Dylan), y la falta de improvisacion (Agente Catalina). En la escena de los constructores, explota emocionalmente y finalmente entiende que lo que necesita es volver a divertirse.',
     escenas: 'Todas las escenas (1-6)',
@@ -50,53 +50,36 @@ const PERSONAJES_DETALLE: Record<
       {
         escena: 'Escena 1 - El Consultorio',
         lineas: [
-          { personaje: 'TEODORO', texto: '(Se recupera del asombro y vuelve a su estado agitado.) Lo siento, me equivoque de oficina.' },
-          { personaje: 'TEODORO', texto: 'Parece que no me equivoque. Aqui dice que esta es la oficina del Dr. Principe. Es usted su asistente?' },
-          { personaje: 'DR. PRINCIPE', texto: '(Con los brazos lo invita a pasar.) Ven y dime, que ves en esta pintura?' },
-          { personaje: 'TEODORO', texto: 'Le pido una disculpa Dr. Principe. No quise ofenderlo, solo me costo creer que fuera apropiado que un terapeuta estuviera acostado en el piso y—' },
-          { personaje: 'DR. PRINCIPE', texto: 'Apropiado? Que palabra tan extrana. No has contestado mi pregunta.' },
+          { personaje: 'DR. PRINCIPE', texto: '(Repite genuinamente.) Que te trae el dia de hoy a este lugar?' },
+          { personaje: 'TEODORO', texto: 'Mis padres me han hecho venir. Creen que usted puede ayudarme. La cantidad de personas que lo han recomendado es—' },
+          { personaje: 'DR. PRINCIPE', texto: '(Repite genuinamente.) Que te trae el dia de hoy a este lugar?' },
+          { personaje: 'TEODORO', texto: '(Se desespera y dice en voz baja.) Deberia irme. (Se arrepiente y trata de calmarse realizando una tecnica de respiracion. Murmura para si mismo.) Acuerdate de lo que te dijo la entrenadora. (Se dirige al Dr.) Lo siento, pero no puedo perder tiempo, deberia estar ensayando, ya estan por pasar cinco minutos y no hemos—' },
+          { personaje: 'DR. PRINCIPE', texto: '(Muestra empatia.) Escucha con atencion. Que te trae el dia de hoy a este lugar?' },
           {
             personaje: 'TEODORO',
             texto:
-              'Que me trae el dia de hoy a este lugar? Supongo que estoy aqui porque ultimamente no me puedo concentrar en mis ensayos, no puedo controlar mis movimientos en la pista de hielo, no puedo dar lo mejor de mi en mi gran rutina. Y estoy comenzando a dudar... Quizas no soy tan bueno como todos lo creen. Quizas no soy tan bueno como mis padres lo creen. Como es posible que el "joven estrella" no recuerde los tiempos de su gran rutina? Y para acabarla ya ni siquiera lo disfruto como antes.',
+              'Supongo que... (Se da cuenta de su estado ansioso y detiene el movimiento de sus piernas, pero su expresion se tensa mas de lo usual.) Supongo que estoy aqui porque ultimamente no me puedo concentrar en mis ensayos, no puedo controlar mis movimientos en la pista de hielo, no puedo dar lo mejor de mi en mi gran rutina. Y estoy comenzando a dudar... (Evita contacto visual.) Quizas no soy tan bueno como todos lo creen. Quizas no soy tan bueno como mis padres lo creen. Como es posible que el "joven estrella" no recuerde los tiempos de su gran rutina? Como es posible que el "joven estrella" no recuerde en que segundo de la cancion debe hacer sus giros, saltos, piruetas o espirales? Y para acabarla ya ni siquiera lo disfruto como antes.',
           },
-          { personaje: 'DR. PRINCIPE', texto: 'Tu no te has sincerado conmigo, el "joven estrella" lo hizo.' },
-          { personaje: 'TEODORO', texto: '(Se levanta de su asiento.) Yo soy el "joven estrella"!' },
-          { personaje: 'DR. PRINCIPE', texto: 'Has dejado de ver lo invisible! Esa es la razon por la que has venido hoy a este lugar.' },
-        ],
-      },
-      {
-        escena: 'Escena 2 - Planeta del Pirata',
-        lineas: [
-          { personaje: 'TEODORO', texto: 'Ay! Pero que hace!?' },
-          { personaje: 'DR. PRINCIPE', texto: 'Es que no te decides y el viaje tiene que empezar.' },
-          { personaje: 'TEODORO', texto: 'Y esa ropa?, y mi ropa?, y donde estoy? Digame donde estamos, quiero a mi Mama!' },
-          { personaje: 'TEODORO', texto: 'Hey, senor, senor! Despierte, ronca horrible, y tiene unas cosas extranas alrededor que le estan robando su tesoro.' },
-          { personaje: 'CAPITAN NEREO', texto: 'Mi Tesoro! Largo, barbajanes! Pero que veo! Marineros!' },
-          { personaje: 'TEODORO', texto: 'Capitan, las indicaciones que da son imposibles, asi no puede dirigir un barco, debe conocer las capacidades de cada quien, un capitan reparte las tareas para que todo funcione.' },
-          { personaje: 'DR. PRINCIPE', texto: 'Que gran leccion, Teodoro, quiza deberias escucharte un poco a ti mismo.' },
         ],
       },
       {
         escena: 'Escena 5 - Planeta de los Constructores (MONOLOGO CLAVE)',
         lineas: [
-          { personaje: 'TEODORO', texto: '(Con mas seguridad) Sera dificil encontrar esa llave entre todo este monton de arena solos. Tal vez podamos trabajar en equipo, o mirar mas alla con nuestras lupas o... improvisar!' },
-          { personaje: 'TEODORO', texto: '(Enojado y frustrado) No me importa. Llevo aqui no se cuanto tiempo y a este paso jamas podre llegar al planeta para la tonta caja con esos tontos patines y con este tonto mapa y a esa tonta leccion. Me quedare atrapado en este tonto planeta lleno de tierra y arena y me convertire en uno de ustedes y jamas llegare a casa. No quiero ganar la competencia, no quiero ser el mejor de todos los tiempos. No quiero dar vueltas sin sentido. Solo quiero ir a casa y estar solo... tal vez salir a patinar un rato, ir con mis amigos, ponerme a dar vueltas, como antes. Estoy harto de estos juegos. Estoy harto de pensarlo todo demasiado. Es aburrido.' },
-          { personaje: 'DR. PRINCIPE', texto: 'Tienes razon, repetir las cosas sin saber por que las hacemos suena muy aburrido. Los planetas han sido divertidos porque tu los has hecho divertidos.' },
-          { personaje: 'TEODORO', texto: 'Creo que estoy listo Doc. Si me pude divertir en este singular planeta. Que no puedo hacer con mis amigos, mis papas, mis patines, los que sean. Muero por volver a casa.' },
+          { personaje: 'DR. PRINCIPE', texto: 'Que planeta tan interesante. (Observando a su alrededor con curiosidad.) Este camino a casa no me lo sabia, ese lapiz si que es magico! Como encontraremos esa llave Teodoro?' },
+          { personaje: 'TEODORO', texto: '(Pensativo, pero con mas seguridad) Sera dificil encontrar esa llave entre todo este monton de arena solos. Tal vez podamos trabajar en equipo, o mirar mas alla con nuestras lupas o... improvisar! (Con entusiasmo) Mira, hay unas personas por alla, les podemos preguntar.' },
         ],
       },
     ],
   },
   'dr-principe': {
-    nombre: 'Dr. Saint Exupery / Principito',
+    nombre: 'Dr. Principe',
     icon: '\u2728',
     edad: '30-40 anos',
     tipo: 'Co-protagonista',
     color: 'text-gold-dark',
     colorBg: 'bg-gold/10 border-gold',
     descripcion:
-      'Terapeuta experimentado con alma de nino. Guia a Teodoro a traves de una terapia poco convencional que lo lleva a viajar por distintos planetas.',
+      'Terapeuta experimentado con alma de nino. Sin malicia. Curioso y entusiasta por la vida. Tiene multiples talentos. Al escuchar del problema de Teodoro decide ayudarlo, lo analiza y por medio de un viaje fantastico lo confronta con sus malas actitudes, sus miedos y lo guia para encontrar de nuevo su pasion.',
     contexto:
       'El Dr. Principe es el narrador-guia de la historia. Es un terapeuta que usa metodos poco convencionales: en lugar de sesiones tradicionales, lleva a Teodoro a un viaje fantastico. Tiene una dualidad: es un profesional serio pero con el espiritu jugueton de un nino. Rompe la cuarta pared constantemente, hablandole al publico como "lectores". Es paciente, enigmatico y siempre responde con preguntas. Su frase clave es "Lo esencial es invisible a los ojos."',
     escenas: 'Todas las escenas (1-6)',
@@ -157,14 +140,14 @@ const PERSONAJES_DETALLE: Record<
     ],
   },
   'capitan-nereo': {
-    nombre: 'Capitan Nereo (Rey/Pirata)',
+    nombre: 'El Capitan Nereo',
     icon: '\u2693',
     edad: 'Abierta',
     tipo: 'Secundario',
     color: 'text-blue-900',
     colorBg: 'bg-blue-planet/10 border-blue-planet',
     descripcion:
-      'Pirata ridiculo, carismatico y obsesivo con el control. Habita solitario un planeta lleno de islas y mares. Desea comandar una tripulacion para buscar un gran tesoro. Parodia de politico.',
+      'Pirata ridiculo, carismatico y obsesivo con el control que habita solitario un planeta lleno de islas y mares. Tiene una relacion estrecha con su fiel acompanante Neron, un gracioso perico parlanchin. Desea comandar una tripulacion para buscar con su mapa un gran tesoro. Representa el deseo de control.',
     contexto:
       'El Capitan Nereo vive solo en su planeta con su cotorro Neron (un peluche o marioneta). Es un pirata que quiere controlar todo pero no tiene a nadie a quien mandar. Refleja la obsesion de Teodoro por controlar cada movimiento de su rutina. A traves del juego de "Simon dice" con el publico, descubre que no puede dirigir dando ordenes imposibles, sino confiando en su tripulacion. Le regala a Teodoro un mapa que sera clave para el resto de la historia.',
     escenas: 'Escena 2 - Planeta del Pirata',
@@ -189,30 +172,28 @@ const PERSONAJES_DETALLE: Record<
       {
         escena: 'Escena 2 - Planeta del Pirata',
         lineas: [
-          { personaje: 'CAPITAN NEREO', texto: '(Bosteza y despierta.) Mi Tesoro! Largo, barbajanes! Pero que veo! Marineros! Giugh De agua dulce, asco!' },
-          { personaje: 'TEODORO', texto: 'Asco, perdon? Usted es el que no se ve muy saludable.' },
-          { personaje: 'CAPITAN NEREO', texto: 'Yo soy el Capitan Nereo, Senor de estas islas, de este planeta y gobierno y controlo todo lo que aqui se encuentra, se mueve o anda.' },
-          { personaje: 'CAPITAN NEREO', texto: 'Arrrgh Que dices? Arrrgh. Ah, si, y el es Neron, el cotorro. Neron por que le haces como cuervo? Perdonenlo, esta ronco. No lo hagan enojar, es un cotorro salvaje.' },
-          { personaje: 'CAPITAN NEREO', texto: 'Papapapapapapa, aqui nadie se mueve ni hace nada si no lo ordeno yo. Les ordeno a ustedes dos que se identifiquen, Marineros.' },
-          { personaje: 'CAPITAN NEREO', texto: 'Arrrgh Que dices Neron? Que ellos pueden ayudarme a llegar a mi tesoro? Quiza tengas razon, se necesita una tripulacion para llegar al tesoro. Pero primero deben pasar la prueba.' },
-          { personaje: 'CAPITAN NEREO', texto: 'Les explicare lo que haremos: Simon dice es el examen perfecto para saber si pueden ser una tripulacion ordenada o si deben ser arrojados a los tiburones. Esto es asi: Yo dire "Simon dice toquen su cabeza", y ustedes tocaran su cabeza. Si antes de la orden no digo la frase "Simon dice" no deberan hacerla o seran arrojados a los tiburones.' },
-          { personaje: 'CAPITAN NEREO', texto: '(Frustrado.) No, esto no debia ser asi! Ustedes deben seguir las ordenes que les doy, deben ser una tripulacion obediente y perfecta.' },
-          { personaje: 'CAPITAN NEREO', texto: '(Se sienta y comienza a llorar.) Que desastre, asi nunca llegare a mi tesoro.' },
-          { personaje: 'TEODORO', texto: 'Capitan, las indicaciones que da son imposibles, asi no puede dirigir un barco, debe conocer las capacidades de cada quien.' },
-          { personaje: 'CAPITAN NEREO', texto: 'Jovencito, conocerlo me ha ayudado a ver lo que me faltaba para poder guiar a mi tripulacion. Quiero devolver el favor, despues de todo nadie llega a su destino sin un mapa, yo le dare uno, uno muy especial.' },
+          { personaje: 'TEODORO', texto: 'Hey, senor, senor! Despierte, ronca horrible, y tiene unas cosas extranas alrededor que le estan robando su tesoro.' },
+          { personaje: 'CAPITAN NEREO', texto: 'Mi Tesoro! Largo, barbajanes!... Pero que veo! Marineros! Giugh De agua dulce, asco!' },
+          { personaje: 'TEODORO', texto: 'Perdon? Usted no se ve muy saludable.' },
+          { personaje: 'CAPITAN NEREO', texto: 'Yo soy el Capitan Nereo, Senor de esta isla, de este planeta y gobierno y controlo todo lo que aqui se encuentra, se mueve o anda.' },
+          { personaje: 'PERICO NERON', texto: '*Arrrgh' },
+          { personaje: 'CAPITAN NEREO', texto: 'Que dices?' },
+          { personaje: 'PERICO NERON', texto: '*Arrrgh *Arrrgh.' },
+          { personaje: 'CAPITAN NEREO', texto: 'Ah, si, y el es Neron, el cotorro. Neron por que le haces como cuervo? Perdonenlo, esta ronco. Cof, cof. (Tose la marioneta.)' },
+          { personaje: 'CAPITAN NEREO', texto: 'Papapapapapapa, aqui nadie se mueve ni hace nada si no lo ordeno yo. (Hacia Teodoro y el Dr.) Les ordeno a ustedes dos que se identifiquen, marineros.' },
         ],
       },
     ],
   },
   dylan: {
-    nombre: 'Dylan (El Vanidoso)',
+    nombre: 'Dylan (o Kimberly), El Vanidoso',
     icon: '\u{1F451}',
-    edad: 'Abierta',
+    edad: '23-25 anos',
     tipo: 'Secundario',
     color: 'text-rose',
     colorBg: 'bg-rose/10 border-rose',
     descripcion:
-      'Excentrico, diva y convenenciero. Fan de si mismo, busca ser eternamente admirado. Tiene una filosofia muy contagiosa. Parodia de influencer.',
+      'Excentrico, diva y convenenciero. Fan de si mismo, busca ser eternamente admirado. Parodia de influencer. Representa el deseo de admiracion. Quiere ser el centro de atencion y recibir constantemente validacion y reconocimiento. Cuando pierde el foco, busca desesperadamente tenerlo de vuelta.',
     contexto:
       'Dylan vive en un jardin hermoso lleno de flores y espejos que lo observan constantemente. Es un influencer obsesionado con su imagen y sus seguidores. Refleja la preocupacion de Teodoro por su apariencia e imagen publica como "joven estrella". Junto con los Baobabs, intenta manipular a Teodoro para que se una a su mundo superficial, alejandolo de la terapia del Dr. Principe. Es el primer personaje que logra tentar a Teodoro.',
     escenas: 'Escena 3 - Planeta del Vanidoso',
@@ -236,29 +217,24 @@ const PERSONAJES_DETALLE: Record<
       {
         escena: 'Escena 3 - Planeta del Vanidoso',
         lineas: [
-          { personaje: 'DYLAN', texto: '(Se despierta de golpe.) Vaya ahora si que mis seguidores estan ansiosos por saber de mi. No hay que hacerlos esperar, pobrecitos deben de estar ansiosos por verme. Y no los culpo, quien no querria verme todo el tiempo, soy maravilloso.' },
+          { personaje: 'VANIDOSO', texto: '(Se despierta de golpe tratando de mantener el estilo) Vaya ahora si que mis seguidores estan ansiosos por saber de mi, empezaron desde temprano. (Arreglandose un poco mientras se ve al celular) No hay que hacerlos esperar, pobrecitos deben de estar ansiosos por verme. Y no los culpo, quien no querria verme todo el tiempo, soy maravilloso. (Procede a tomarse fotos y subir una para sus redes sociales) Listo, ya pueden estar mas agusto mis seguidores. (Mientras se sigue viendo en su celular)' },
           { personaje: 'TEODORO', texto: 'Buenas tardes! Disculpe, me preguntaba si me podria prestar su celular, es urgente.' },
-          { personaje: 'DYLAN', texto: '(Asustado.) Aaaaaaahh! Quienes son ustedes?! Que hacen aqui?! (Toma una foto de todos.) Aaagghh, todos son super basics ninguno me sirve. Acaso ustedes son admiradores mios?' },
-          { personaje: 'DYLAN', texto: 'No! Como por que te prestaria mi celular quien te crees que eres, no eres digno de tocar mi celular!' },
-          { personaje: 'BAOBABS', texto: 'Que?! Como te atreves a menos apreciarlo! No sabes quien es? El es el joven estrella, patinador de clase mundial!' },
-          { personaje: 'DYLAN', texto: 'Si bien dicen que nunca juzgues un libro por su portada, quien imaginaria que detras de... ti, se encontraria un diamante por ser descubierto, tienes suerte de que YO te encontre.' },
-          { personaje: 'DYLAN', texto: '(Full orador motivacional.) Si, pero sabes, me esforcé, trabaje muy duro en mi, no fue nada facil, ni tampoco rapido, tuve que hacer una busqueda dentro de mi ser y despues de mucho tiempo, pude encontrar mi valor, aquello que me hace especial y al hacerlo no pare ahi, trabaje aun mas duro y explote todo eso hasta llegar a ser este pavo real tan maravilloso y hermoso que pueden ver.' },
-          { personaje: 'DYLAN', texto: '(Con falsa compasion manipuladora.) Ay estrellita, dejale eso a la gente normal, a los que no tienen talento. La gente como nosotros, estamos hechos para brillar, para ser admirados y sobresalir, no puedes dejar que todo tu brillo quede opacado en la penumbra de la normalidad.' },
-          { personaje: 'DR. PRINCIPE', texto: 'No lo escuches, lo que te propone solo es una salida superficial, no una solucion real.' },
-          { personaje: 'DYLAN', texto: '(Drama de telenovela.) Ooooohh, es que ese siempre ha sido el problema, dice ser un gran terapeuta pero solo me juzga sin conocerme. Tu no sabes por lo que he pasado, mi camino tampoco ha sido facil.' },
+          { personaje: 'VANIDOSO', texto: '(Asustado al enterarse que no estaba solo) Aaaaaaahh! Quienes son ustedes?! Que hacen aqui?! (Toma una foto de todos y con un tono de asco, desprecio y desilucion) Aaagghh (como un eeeewwww), todos son super basics ninguno me sirve (cambiando drasticamente su actitud) Acaso ustedes son admiradores mios?' },
+          { personaje: 'TEODORO', texto: 'No, me preguntaba si me podria prestar su celular, es que... (lo interrumpe el vanidoso).' },
+          { personaje: 'VANIDOSO', texto: '(Con un disgusto total) No! Como por que te prestaria mi celular quien te crees que eres, no eres digno de tocar mi celular!' },
         ],
       },
     ],
   },
   'agente-catalina': {
-    nombre: 'Agente Catalina (La Geografa)',
+    nombre: 'Agente Catalina',
     icon: '\u{1F30D}',
-    edad: 'Abierta',
+    edad: '30-40 anos',
     tipo: 'Secundario',
     color: 'text-teal-900',
     colorBg: 'bg-teal-planet/10 border-teal-planet',
     descripcion:
-      'Comprometida, superficial, exagerada, dramatica. La mayor conocedora del mundo exterior sin salir de su escritorio. Tiene un punto debil por el Dr. Principe. Parodia de agente de viajes Disney.',
+      'Comprometida con su trabajo de agente de viajes. Es superficial, exagerada, dramatica y a veces un poco grosera. Tiene un punto debil por el Dr. Principe pues son amigos desde hace anos. Es de mente cerrada; logra cotizar los mejores viajes pero jamas ha salido de su escritorio. Tiene cambios de humor constantes.',
     contexto:
       'Agente Catalina es la agente de viajes interestelar mas reconocida, pero jamas ha salido de su escritorio. Esta rodeada de recuerdos de viajes de otros pero ella nunca ha viajado. Refleja la falta de improvisacion de Teodoro: ambos siguen procedimientos establecidos sin cuestionarlos. Su transformacion viene cuando abre las cartas de sus clientes y descubre que las experiencias emocionales son mas valiosas que los datos. Tiene debilidad por el Dr. Principe, a quien llama "Doctorcito".',
     escenas: 'Escena 4 - Planeta del Geografo',
@@ -282,19 +258,17 @@ const PERSONAJES_DETALLE: Record<
       {
         escena: 'Escena 4 - Planeta del Geografo',
         lineas: [
-          { personaje: 'AGENTE CATALINA', texto: 'Quienes estan ahi?' },
-          { personaje: 'AGENTE CATALINA', texto: 'Doctorcito, eres tu! Me levantaria y te abrazaria pero tengo muchas cosas que hacer.' },
+          { personaje: 'DR. PRINCIPE', texto: 'Buenos dias!' },
+          { personaje: 'AGENTE CATALINA', texto: '(Dice desde su escritorio y mientras esta trabajando.) Doctorcito, eres tu! Me levantaria y te abrazaria pero tengo muchas cosas que hacer.' },
+          { personaje: 'DR. PRINCIPE', texto: '(Se dirige al patinador y dice en voz baja.) Ya ves? Eres igual de extrano que ella.' },
+          { personaje: 'TEODORO', texto: '(Se rie ligeramente, mientras lo reflexiona rapidamente.) Supongo que tienes algo de razon.' },
           { personaje: 'AGENTE CATALINA', texto: 'A quien trajiste contigo? Es alguien interesante? Lo voltearia a ver, pero tengo tantos documentos que llenar.' },
-          { personaje: 'DR. PRINCIPE', texto: 'Se trata de mi amigo Teodoro.' },
+          { personaje: 'DR. PRINCIPE', texto: 'Se trata de mi amigo Teodoro/Lucy.' },
           { personaje: 'AGENTE CATALINA', texto: 'Entonces, no es interesante.' },
           { personaje: 'TEODORO', texto: 'Yo soy el "joven estrella".' },
-          { personaje: 'AGENTE CATALINA', texto: '(Exclama.) El "joven estrella"! No puedo creerlo! Alguien famoso de la Tierra! Has ido a Japon? Que lugares visitaste?' },
-          { personaje: 'AGENTE CATALINA', texto: '(Regresa a sus libros.) Es una pena. Por un momento crei que podrias compartirme algunos datos para mejorar mis itinerarios.' },
-          { personaje: 'TEODORO', texto: 'Por que no viajas tu misma? Asi podrias conseguir toda la informacion que necesitas.' },
-          { personaje: 'AGENTE CATALINA', texto: '(Burlonamente.) Todo lo contrario. No es el agente de viajes quien debe hacer los viajes, porque... No pensaras que dejare de trabajar para contestar esa pregunta.' },
-          { personaje: 'AGENTE CATALINA', texto: '(Se levanta de su escritorio.) Todo se arruino! (Se desmaya.)' },
-          { personaje: 'AGENTE CATALINA', texto: '(Regresa a la vida, mas horrorizada.) Improvisar!' },
-          { personaje: 'AGENTE CATALINA', texto: 'No, dejala ahi! Creo que seguire desdoblando las cartas.' },
+          { personaje: 'AGENTE CATALINA', texto: '(Exclama, mientras levanta su mirada de los libros y suelta el lapiz con el que escribia.) El "joven estrella"! No puedo creerlo! Alguien famoso de la Tierra! Has ido a Japon? Por supuesto que has ido, la ultima competencia fue ahi. Que lugares visitaste?' },
+          { personaje: 'TEODORO', texto: 'No, no pude—' },
+          { personaje: 'AGENTE CATALINA', texto: '(Regresa su mirada a sus libros y continua escribiendo.) Es una pena. Por un momento crei que podrias compartirme algunos datos para mejorar mis itinerarios.' },
         ],
       },
     ],
@@ -307,7 +281,7 @@ const PERSONAJES_DETALLE: Record<
     color: 'text-orange-900',
     colorBg: 'bg-orange-planet/10 border-orange-planet',
     descripcion:
-      'Tres sujetos comicos y frustrados. Como Baobabs, su pasatiempo favorito es hacerle la vida imposible al Dr. y su terapia e intentan robar la rosa. Como Constructores, estan atrapados en su propia mentira logica realizando una obra sin sentido. Cada uno tiene un talento unico. Parodia de la Linea 6 del metro MTY.',
+      'Tres sujetos comicos, caricaturescos y camaleonicos sin identidad que buscan crear caos en el mundo fantastico. Representan los pensamientos intrusivos y catastroficos de Teodoro. En la escena 5, crean una identidad como Constructores en un planeta desertico. Cada uno cuenta con un talento unico.',
     contexto:
       'Los Baobabs representan los miedos, malos pensamientos y malas actitudes de Teodoro. Aparecen en los planetas como criaturas molestas que intentan sabotear la terapia. En la Escena 3 se alian con el Vanidoso para manipular a Teodoro. En la Escena 5 se transforman en "Constructores": tres trabajadores atrapados en una construccion sin sentido durante 15,236 dias, cada uno con un talento oculto (dibujo/caligrafia, canto de opera, rap). Al final, Teodoro los libera y deciden construir un teatro.',
     escenas: 'Escenas 2, 3 y 5',
@@ -344,16 +318,20 @@ const PERSONAJES_DETALLE: Record<
       {
         escena: 'Escena 5 - Los Constructores',
         lineas: [
-          { personaje: 'FAROLERO (Tony)', texto: '(Con sonrisa mecanica.) Buenos dias, Inge. Son las 12:03 pm por favor puede firmar su ficha de entrada y que sea un gran dia de trabajo.' },
-          { personaje: 'FAROLERO', texto: 'No tengo idea, mi labor es marcar la entrada y salida de todos los trabajadores y marcar los dias de jornada en el proyecto. Hoy es el dia 15,236. Es un arduo trabajo, pero valdra la pena.' },
-          { personaje: 'CONTADOR (Ricky)', texto: '(Serio, concentrado.) Bien, entonces si muevo el bloque 2.3 grados a la izquierda la fuerza de resistencia cambia 34 KHz. Que maravilla! (Canta la frase con voz operistica.)' },
-          { personaje: 'CONTADOR', texto: '(Reflexivo.) Ricardo... (Entusiasmado.) Ricky!' },
-          { personaje: 'FAROLERO', texto: 'Si, Ricky! Que buen nombre.' },
-          { personaje: 'COMERCIANTE (William)', texto: '(Orgulloso.) Que buena rima! Ustedes no son de aqui, que buscan?' },
-          { personaje: 'COMERCIANTE', texto: 'Chico, rimar es divertido, y nunca tengo desatino. Pero lo importante, lo importante es esta gran obra.' },
-          { personaje: 'TEODORO', texto: '(Explota.) Estoy harto de juegos! Todos son baobabs! Seguro este planeta se quedo lleno de arena por su culpa.' },
-          { personaje: 'COMERCIANTE', texto: 'Ricky, Tony, ya no quiero construir esto. Para quien lo hacemos? Tengo tantas ideas pero jamas pense compartirlas con alguien.' },
-          { personaje: 'COMERCIANTE', texto: 'Un teatro! Llevo bastantes dias observando a Ricky, a Tony, con todos sus talentos y crei que jamas se atreverian, nos ibamos a atrever a relucirlos... por que no crear un espacio donde podamos crear musica, pinturas, poesia y compartirlo entre nosotros?' },
+          { personaje: 'CONSTRUCTOR 1', texto: '(Se encuentra de pie frente a su pizarron. Se dirige hacia el Dr. Principe, repitiendo con una sonrisa mecanica) Buenos dias, Inge. (Observa su reloj de mano) Son las 12:03 pm por favor puede firmar su ficha de entrada y que sea un gran dia de trabajo. (Le entrega una tabla con boligrafo y el Dr. accede a firmar).' },
+          { personaje: 'TEODORO', texto: '(Con seguridad) Hola, nosotros no somos constructores, venimos a preguntar sobre alguna llave que hayan visto por aqui.' },
+          { personaje: 'CONSTRUCTOR 1', texto: '(Con el mismo tono anterior) Hola inge, buenos dias. (Observa su reloj de mano) Son las 12:04 pm por favor puede firmar su ficha de entrada y que sea un gran dia de trabajo. (Le entrega la misma tabla). De hecho, van un poco tarde, pero no se preocupen mi companero es quien al final les hara el corte de pago.' },
+          { personaje: 'DR. PRINCIPE', texto: '(Con calma) Que estan construyendo aqui?' },
+          { personaje: 'CONSTRUCTOR 1', texto: '(Con falso entusiasmo) No tengo idea, mi labor es marcar la entrada y salida de todos los trabajadores y marcar los dias de jornada en el proyecto. (Senalando al pizarron) Hoy es el dia 15,235. Perdon! 236. (Borra el numero 5 y escribe el 6 con la misma hermosa caligrafia, se toma su tiempo ensimismado en la escritura). Es un arduo trabajo, pero valdra la pena, es una obra muy importante. (Vuelve a su entusiasmo anterior) La jornada acaba a las 8 y vienen conmigo para firmar su salida. Excelente dia. (Con sonrisa mecanica)' },
+          { personaje: 'CONSTRUCTOR 2', texto: '(Escribiendo en su libreta, observando el bloque, concentrado. Serio) Bien, entonces si muevo el bloque 2.3 grados a la izquierda la fuerza de resistencia cambia 34 KHz. Que maravilla! (Canta la frase con voz operistica) (Vuelve a su libreta, serio) Entonces si lo muevo 2.2 grados la fuerza de resistencia cambia a 33.6 KHz. Que planeta tan mas extrano, siempre cambiando sus fuerzas, debo anotar todas las variantes posibles, son muy importantes.' },
+          { personaje: 'TEODORO', texto: 'Hola... ingeniero, estabamos buscando por aqui alguna llave que haya visto entre toda esta obra.' },
+          { personaje: 'CONSTRUCTOR 2', texto: 'Hola Inge... Inge (Dirigiendose a ambos). Una llave? No sabia que iba a llegar nuevo material esta semana, siempre nos llega arena y mas arena para todos estos bloques que tenemos que apilar y enderezar. Debemos comenzar un inventario nuevo para contar las llaves que nos lleguen esta semana. Que maravilla! (Vuelve a cantar la frase con voz operistica). (Regresa a su semblante serio) (Grita hacia el Farolero) Inge, anota el numero 27.4378, no se me vaya a olvidar.' },
+          { personaje: 'TEODORO', texto: 'Todos estan demasiado distraidos!' },
+          { personaje: 'CONSTRUCTOR 3', texto: '(Saliendo de su concentracion en las melodias de rap) Disculpa que dijiste?' },
+          { personaje: 'TEODORO', texto: 'Nadie me escucha.' },
+          { personaje: 'CONSTRUCTOR 3', texto: 'Disculpa que... ah! (Sorprendido. Esperando que no lo descubran por no estar trabajando) Digo ingeniero si ya quedo apilado la torre 35 me dispongo a apilar la siguiente torre sin mas circo. Que buena rima! (Orgulloso) Ustedes no son de aqui, que buscan?' },
+          { personaje: 'TEODORO', texto: 'Una llave. (En tono seco)' },
+          { personaje: 'CONSTRUCTOR 3', texto: '(Apatico y sarcastico) Uy, eso que tiene que ver con la "Gran Obra Puente Norte-Sur y Parque Ecologico y de Agua del Planeta 261" que sera toda esta construccion? Quiero decir, eso es lo mas importante. Veras, aqui cualquier cosa que busques y que no tenga que ver con apilar bloques de arena, dalo por perdido. Lo aprendi a la mala. (Vuelve resignado a su libreta)' },
         ],
       },
     ],
@@ -566,7 +544,7 @@ function isCharacterLine(linePersonaje: string, slug: string): boolean {
     case 'dr-principe':
       return lower.includes('dr') || lower.includes('principe');
     case 'capitan-nereo':
-      return lower.includes('capitan') || lower.includes('nereo');
+      return lower.includes('capitan') || lower.includes('nereo') || lower.includes('neron') || lower.includes('perico');
     case 'dylan':
       return lower.includes('vanidoso') || lower.includes('dylan');
     case 'agente-catalina':

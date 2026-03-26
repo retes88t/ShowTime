@@ -2,56 +2,56 @@ import { Link } from 'react-router-dom';
 
 const PERSONAJES = [
   {
-    nombre: 'Teodoro',
+    nombre: 'Teodoro (o Lucia)',
     slug: 'teodoro',
     edad: '17-21 anos',
     tipo: 'Protagonista',
     descripcion:
-      'Patinador artistico. Joven alegre y (ex) apasionado. Tras ganar una medalla de oro, ha dejado de disfrutar el patinaje. Asiste a terapia avergonzado buscando reconectar con su pasion.',
+      'Patinador artistico de hielo. Es cordial, perfeccionista y ex-apasionado. Se siente frustrado por la ejecucion de su rutina para la competencia proxima y la presion le ha provocado apatia por su profesion. Durante su travesia, va desarrollando su curiosidad y soltando sus propias exigencias.',
     escenas: 'Todas las escenas',
     color: 'bg-sky/20 border-sky text-sky-dark',
     icon: '\u26F8',
   },
   {
-    nombre: 'Dr. Saint Exupery / Principito',
+    nombre: 'Dr. Principe',
     slug: 'dr-principe',
     edad: '30-40 anos',
     tipo: 'Co-protagonista',
     descripcion:
-      'Terapeuta experimentado con alma de nino. Guia a Teodoro a traves de una terapia poco convencional que lo lleva a viajar por distintos planetas.',
+      'Terapeuta experimentado con alma de nino. Sin malicia. Curioso y entusiasta por la vida. Tiene multiples talentos. Al escuchar del problema de Teodoro decide ayudarlo, lo analiza y por medio de un viaje fantastico lo confronta con sus malas actitudes, sus miedos y lo guia para encontrar de nuevo su pasion.',
     escenas: 'Todas las escenas',
     color: 'bg-gold/20 border-gold text-gold-dark',
     icon: '\u2728',
   },
   {
-    nombre: 'Capitan Nereo (Rey/Pirata)',
+    nombre: 'El Capitan Nereo',
     slug: 'capitan-nereo',
     edad: 'Abierta',
     tipo: 'Secundario',
     descripcion:
-      'Pirata ridiculo, carismatico y obsesivo con el control. Habita solitario un planeta lleno de islas y mares. Desea comandar una tripulacion para buscar un gran tesoro. Parodia de politico.',
+      'Pirata ridiculo, carismatico y obsesivo con el control que habita solitario un planeta lleno de islas y mares. Tiene una relacion estrecha con su fiel acompanante Neron, un gracioso perico parlanchin. Desea comandar una tripulacion para buscar con su mapa un gran tesoro. Representa el deseo de control.',
     escenas: 'Escena 2 - Planeta del Pirata',
     color: 'bg-blue-planet/20 border-blue-planet text-blue-900',
     icon: '\u2693',
   },
   {
-    nombre: 'Dylan (El Vanidoso)',
+    nombre: 'Dylan (o Kimberly), El Vanidoso',
     slug: 'dylan',
-    edad: 'Abierta',
+    edad: '23-25 anos',
     tipo: 'Secundario',
     descripcion:
-      'Excentrico, diva y convenenciero. Fan de si mismo, busca ser eternamente admirado. Tiene una filosofia muy contagiosa. Parodia de influencer.',
+      'Excentrico, diva y convenenciero. Fan de si mismo, busca ser eternamente admirado. Parodia de influencer. Representa el deseo de admiracion. Quiere ser el centro de atencion y recibir constantemente validacion y reconocimiento.',
     escenas: 'Escena 3 - Planeta del Vanidoso',
     color: 'bg-rose/20 border-rose text-rose',
     icon: '\u{1F451}',
   },
   {
-    nombre: 'Agente Catalina (La Geografa)',
+    nombre: 'Agente Catalina',
     slug: 'agente-catalina',
-    edad: 'Abierta',
+    edad: '30-40 anos',
     tipo: 'Secundario',
     descripcion:
-      'Comprometida, superficial, exagerada, dramatica. La mayor conocedora del mundo exterior sin salir de su escritorio. Tiene un punto debil por el Dr. Principe. Parodia de agente de viajes Disney.',
+      'Comprometida con su trabajo de agente de viajes. Es superficial, exagerada, dramatica y a veces un poco grosera. Tiene un punto debil por el Dr. Principe pues son amigos desde hace anos. Es de mente cerrada; logra cotizar los mejores viajes pero jamas ha salido de su escritorio. Tiene cambios de humor constantes.',
     escenas: 'Escena 4 - Planeta del Geografo',
     color: 'bg-teal-planet/20 border-teal-planet text-teal-900',
     icon: '\u{1F30D}',
@@ -62,7 +62,7 @@ const PERSONAJES = [
     edad: 'Abierta',
     tipo: 'Antagonistas / Comicos',
     descripcion:
-      'Tres sujetos comicos y frustrados. Como Baobabs, su pasatiempo favorito es hacerle la vida imposible al Dr. y su terapia e intentan robar la rosa. Como Constructores, estan atrapados en su propia mentira logica realizando una obra sin sentido. Cada uno tiene un talento unico. Parodia de la Linea 6 del metro MTY.',
+      'Tres sujetos comicos, caricaturescos y camaleonicos sin identidad que buscan crear caos en el mundo fantastico. Representan los pensamientos intrusivos y catastroficos de Teodoro. En la escena 5, crean una identidad como Constructores en un planeta desertico. Cada uno cuenta con un talento unico.',
     escenas: 'Escenas 2, 3 y 5',
     color: 'bg-orange-planet/20 border-orange-planet text-orange-900',
     icon: '\u{1F333}',
