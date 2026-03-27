@@ -96,15 +96,19 @@ export function MinutasManager({ minutas, onRefresh }: MinutasManagerProps) {
                     <h4 className="font-medium text-gray-900">{m.titulo}</h4>
                   </div>
                   <p className="mt-1 text-xs text-gray-500">Asistentes: {m.asistentes}</p>
+                </div>
+                <div className="flex items-center gap-1">
                   <Link
                     to={`/minutas/${m.id}`}
                     onClick={(e) => e.stopPropagation()}
-                    className="mt-2 inline-flex items-center gap-1.5 rounded-lg bg-gold/10 border border-gold/30 px-3 py-1.5 text-xs font-semibold text-gold-dark hover:bg-gold/20 transition"
+                    className="rounded p-1 text-gray-400 hover:text-gold-dark"
+                    title="Vista previa"
                   >
-                    📋 Ver detalle completo →
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
                   </Link>
-                </div>
-                <div className="flex items-center gap-1">
                   <button
                     onClick={(e) => { e.stopPropagation(); openEdit(m); }}
                     className="rounded p-1 text-gray-400 hover:text-blue-600"
