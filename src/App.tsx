@@ -12,6 +12,7 @@ import { AudicionPersonajePage } from './pages/AudicionPersonajePage';
 import { AyudaAudicionesPage } from './pages/AyudaAudicionesPage';
 import { TareasPage } from './pages/TareasPage';
 import { MinutasPage } from './pages/MinutasPage';
+import { MinutaDetallePage } from './pages/MinutaDetallePage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
               <Route path="/tareas" element={<TareasPage />} />
               <Route path="/admin" element={<AdminPage />} />
               <Route path="/minutas" element={<MinutasPage />} />
+              <Route path="/minutas/:id" element={<MinutaDetallePage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </main>
