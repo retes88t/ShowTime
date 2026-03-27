@@ -11,6 +11,7 @@ import { AudicionPage } from './pages/AudicionPage';
 import { AudicionPersonajePage } from './pages/AudicionPersonajePage';
 import { AyudaAudicionesPage } from './pages/AyudaAudicionesPage';
 import { TareasPage } from './pages/TareasPage';
+import { MinutasPage } from './pages/MinutasPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
               <Route path="/ayuda-audiciones" element={<AyudaAudicionesPage />} />
               <Route path="/tareas" element={<TareasPage />} />
               <Route path="/admin" element={<AdminPage />} />
+              <Route path="/minutas" element={<MinutasPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </main>

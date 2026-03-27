@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useScenes } from '../hooks/useScenes';
 import { useNoticias } from '../hooks/useNoticias';
 import { PeopleManager } from '../components/admin/PeopleManager';
@@ -52,13 +53,21 @@ export function AdminPage() {
               <h1 className="text-2xl font-bold text-gray-900">Administracion</h1>
               <p className="text-sm text-gray-500">Gestiona personas, escenas, noticias y datos de la obra</p>
             </div>
-            <button
-              onClick={handleSeed}
-              disabled={seeding}
-              className="rounded-lg border border-gold bg-gold/10 px-4 py-2 text-sm font-medium text-gold-dark hover:bg-gold/20 disabled:opacity-50"
-            >
-              {seeding ? 'Poblando...' : 'Poblar datos iniciales'}
-            </button>
+            <div className="flex items-center gap-3">
+              <Link
+                to="/minutas"
+                className="rounded-lg border border-blue-300 bg-blue-50 px-4 py-2 text-sm font-medium text-blue-700 hover:bg-blue-100"
+              >
+                Minutas
+              </Link>
+              <button
+                onClick={handleSeed}
+                disabled={seeding}
+                className="rounded-lg border border-gold bg-gold/10 px-4 py-2 text-sm font-medium text-gold-dark hover:bg-gold/20 disabled:opacity-50"
+              >
+                {seeding ? 'Poblando...' : 'Poblar datos iniciales'}
+              </button>
+            </div>
           </div>
         </div>
       </div>
