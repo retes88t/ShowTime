@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import type { Minuta } from '../../types';
 import { addMinuta, updateMinuta, deleteMinuta } from '../../api/minutasApi';
 import { Modal } from '../ui/Modal';
@@ -95,6 +96,13 @@ export function MinutasManager({ minutas, onRefresh }: MinutasManagerProps) {
                     <h4 className="font-medium text-gray-900">{m.titulo}</h4>
                   </div>
                   <p className="mt-1 text-xs text-gray-500">Asistentes: {m.asistentes}</p>
+                  <Link
+                    to={`/minutas/${m.id}`}
+                    onClick={(e) => e.stopPropagation()}
+                    className="mt-1 inline-flex items-center gap-1 text-xs font-medium text-gold hover:text-gold-dark"
+                  >
+                    Ver detalle completo →
+                  </Link>
                 </div>
                 <div className="flex items-center gap-1">
                   <button
