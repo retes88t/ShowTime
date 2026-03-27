@@ -41,7 +41,9 @@ function parseLines(text: string) {
 }
 
 export function formatMinutaDate(d: string) {
-  return new Date(d + 'T12:00:00').toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' });
+  // Handle both "2026-03-26" and "2026-03-26T06:00:00.000Z" formats
+  const dateStr = d.includes('T') ? d : d + 'T12:00:00';
+  return new Date(dateStr).toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' });
 }
 
 interface MinutaDetailViewProps {

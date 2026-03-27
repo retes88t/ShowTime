@@ -90,7 +90,7 @@ export function MinutasManager({ minutas, onRefresh }: MinutasManagerProps) {
                 <div className="flex-1">
                   <div className="flex items-center gap-3">
                     <span className="inline-flex items-center rounded-full bg-night/10 px-2.5 py-0.5 text-xs font-medium text-night">
-                      {new Date(m.fecha + 'T12:00:00').toLocaleDateString('es-MX', { day: 'numeric', month: 'short', year: 'numeric' })}
+                      {new Date(m.fecha.includes('T') ? m.fecha : m.fecha + 'T12:00:00').toLocaleDateString('es-MX', { day: 'numeric', month: 'short', year: 'numeric' })}
                     </span>
                     <h4 className="font-medium text-gray-900">{m.titulo}</h4>
                   </div>
