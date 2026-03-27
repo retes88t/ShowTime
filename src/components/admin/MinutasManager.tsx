@@ -99,9 +99,9 @@ export function MinutasManager({ minutas, onRefresh }: MinutasManagerProps) {
                   <Link
                     to={`/minutas/${m.id}`}
                     onClick={(e) => e.stopPropagation()}
-                    className="mt-1 inline-flex items-center gap-1 text-xs font-medium text-gold hover:text-gold-dark"
+                    className="mt-2 inline-flex items-center gap-1.5 rounded-lg bg-gold/10 border border-gold/30 px-3 py-1.5 text-xs font-semibold text-gold-dark hover:bg-gold/20 transition"
                   >
-                    Ver detalle completo →
+                    📋 Ver detalle completo →
                   </Link>
                 </div>
                 <div className="flex items-center gap-1">
