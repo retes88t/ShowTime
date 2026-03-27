@@ -106,4 +106,16 @@ export interface Riesgo {
   planes: string; // JSON array de strings
 }
 
-export type SheetTab = 'Escenas' | 'Materiales' | 'Escenografia' | 'Personas' | 'Notas' | 'Chat' | 'Asignaciones' | 'Noticias' | 'Tareas' | 'Riesgos';
+export interface Minuta {
+  id: string;
+  titulo: string;
+  fecha: string;
+  asistentes: string;
+  resumen: string;
+  compromisos: string;
+  notasVuelo: string;
+  proximosPasos: string;
+  fechaCreacion: string;
+}
+
+export type SheetTab = 'Escenas' | 'Materiales' | 'Escenografia' | 'Personas' | 'Notas' | 'Chat' | 'Asignaciones' | 'Noticias' | 'Tareas' | 'Riesgos' | 'Minutas';

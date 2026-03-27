@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useScenes } from '../hooks/useScenes';
 import { useNoticias } from '../hooks/useNoticias';
+import { useMinutas } from '../hooks/useMinutas';
 import { PeopleManager } from '../components/admin/PeopleManager';
 import { ScenesManager } from '../components/admin/ScenesManager';
 import { NoticiasManager } from '../components/admin/NoticiasManager';
+import { MinutasManager } from '../components/admin/MinutasManager';
 import { seedAllData } from '../utils/seedData';
 import { useAppContext } from '../context/AppContext';
 
@@ -12,6 +13,7 @@ const TABS = [
   { id: 'personas', label: 'Personas' },
   { id: 'escenas', label: 'Escenas' },
   { id: 'noticias', label: 'Noticias' },
+  { id: 'minutas', label: 'Minutas' },
 ] as const;
 
 type TabId = (typeof TABS)[number]['id'];
@@ -21,6 +23,7 @@ export function AdminPage() {
   const [seeding, setSeeding] = useState(false);
   const { data: scenes, refetch: refetchScenes } = useScenes();
   const { data: noticias, refetch: refetchNoticias } = useNoticias();
+  const { data: minutas, refetch: refetchMinutas } = useMinutas();
   const { refreshPeople, isAdmin } = useAppContext();
 
   if (!isAdmin) {
@@ -54,12 +57,6 @@ export function AdminPage() {
               <p className="text-sm text-gray-500">Gestiona personas, escenas, noticias y datos de la obra</p>
             </div>
             <div className="flex items-center gap-3">
-              <Link
-                to="/minutas"
-                className="rounded-lg border border-blue-300 bg-blue-50 px-4 py-2 text-sm font-medium text-blue-700 hover:bg-blue-100"
-              >
-                Minutas
-              </Link>
               <button
                 onClick={handleSeed}
                 disabled={seeding}
@@ -93,6 +90,7 @@ export function AdminPage() {
         {activeTab === 'personas' && <PeopleManager />}
         {activeTab === 'escenas' && <ScenesManager scenes={scenes} onRefresh={refetchScenes} />}
         {activeTab === 'noticias' && <NoticiasManager noticias={noticias} onRefresh={refetchNoticias} />}
+        {activeTab === 'minutas' && <MinutasManager minutas={minutas} onRefresh={refetchMinutas} />}
       </div>
     </div>
   );
