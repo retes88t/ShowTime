@@ -41,6 +41,7 @@ export function Header() {
     { to: '/audicion', label: 'Audiciones' },
     { to: '/ayuda-audiciones', label: 'Ayuda para Audiciones' },
     { to: '/libreto', label: 'Libreto' },
+    { to: '/cast', label: 'Cast', highlight: true },
     { to: '/tareas', label: 'Tareas' },
     ...(isAdmin ? [{ to: '/admin', label: 'Admin' }] : []),
   ];
@@ -62,9 +63,13 @@ export function Header() {
                 key={link.to}
                 to={link.to}
                 className={`rounded-lg px-3 py-2 text-sm font-medium transition ${
-                  isActive(link.to)
-                    ? 'bg-night-lighter text-gold'
-                    : 'text-gray-300 hover:text-gold'
+                  link.highlight
+                    ? isActive(link.to)
+                      ? 'bg-gold text-night'
+                      : 'bg-gold/20 text-gold hover:bg-gold/30'
+                    : isActive(link.to)
+                      ? 'bg-night-lighter text-gold'
+                      : 'text-gray-300 hover:text-gold'
                 }`}
               >
                 {link.label}
@@ -127,9 +132,13 @@ export function Header() {
                   key={link.to}
                   to={link.to}
                   className={`flex items-center rounded-lg px-4 py-3 text-sm font-medium transition ${
-                    isActive(link.to)
-                      ? 'bg-night-lighter text-gold'
-                      : 'text-gray-300 active:bg-night-lighter hover:bg-night-lighter/50 hover:text-gold'
+                    link.highlight
+                      ? isActive(link.to)
+                        ? 'bg-gold text-night'
+                        : 'bg-gold/20 text-gold active:bg-gold/30 hover:bg-gold/30'
+                      : isActive(link.to)
+                        ? 'bg-night-lighter text-gold'
+                        : 'text-gray-300 active:bg-night-lighter hover:bg-night-lighter/50 hover:text-gold'
                   }`}
                 >
                   {link.label}

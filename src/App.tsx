@@ -10,6 +10,7 @@ import { EstructuraPage } from './pages/EstructuraPage';
 import { AudicionPage } from './pages/AudicionPage';
 import { AudicionPersonajePage } from './pages/AudicionPersonajePage';
 import { AyudaAudicionesPage } from './pages/AyudaAudicionesPage';
+import { CastPage } from './pages/CastPage';
 import { TareasPage } from './pages/TareasPage';
 import { MinutasPage } from './pages/MinutasPage';
 import { MinutaDetallePage } from './pages/MinutaDetallePage';
@@ -30,6 +31,7 @@ function App() {
               <Route path="/audicion" element={<AudicionPage />} />
               <Route path="/audicion/:personaje" element={<AudicionPersonajePage />} />
               <Route path="/ayuda-audiciones" element={<AyudaAudicionesPage />} />
+              <Route path="/cast" element={<CastPage />} />
               <Route path="/tareas" element={<TareasPage />} />
               <Route path="/admin" element={<AdminPage />} />
               <Route path="/minutas" element={<MinutasPage />} />
