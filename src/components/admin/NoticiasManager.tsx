@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import type { Noticia } from '../../types';
 import { addNoticia, updateNoticia, deleteNoticia } from '../../api/noticiasApi';
 import { Modal } from '../ui/Modal';
@@ -12,11 +12,41 @@ interface NoticiasManagerProps {
 export function NoticiasManager({ noticias, onRefresh }: NoticiasManagerProps) {
   const [showModal, setShowModal] = useState(false);
   const [editing, setEditing] = useState<Noticia | null>(null);
+  const [showPreview, setShowPreview] = useState(false);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [form, setForm] = useState({
     titulo: '',
     contenido: '',
     activa: true,
   });
+
+  const insertAtCursor = (before: string, after: string) => {
+    const ta = textareaRef.current;
+    if (!ta) return;
+    const start = ta.selectionStart;
+    const end = ta.selectionEnd;
+    const selected = form.contenido.slice(start, end);
+    const replacement = before + (selected || 'texto') + after;
+    const newValue = form.contenido.slice(0, start) + replacement + form.contenido.slice(end);
+    setForm({ ...form, contenido: newValue });
+    setTimeout(() => {
+      ta.focus();
+      ta.selectionStart = start + before.length;
+      ta.selectionEnd = start + before.length + (selected || 'texto').length;
+    }, 0);
+  };
+
+  const insertLink = () => {
+    const url = prompt('URL del enlace:', 'https://');
+    if (!url) return;
+    const ta = textareaRef.current;
+    const start = ta?.selectionStart ?? form.contenido.length;
+    const end = ta?.selectionEnd ?? form.contenido.length;
+    const selected = form.contenido.slice(start, end) || 'texto del enlace';
+    const tag = `<a href="${url}" target="_blank">${selected}</a>`;
+    const newValue = form.contenido.slice(0, start) + tag + form.contenido.slice(end);
+    setForm({ ...form, contenido: newValue });
+  };
 
   const openAdd = () => {
     setEditing(null);
@@ -86,7 +116,7 @@ export function NoticiasManager({ noticias, onRefresh }: NoticiasManagerProps) {
                       {n.activa ? 'Activa' : 'Inactiva'}
                     </span>
                   </div>
-                  <p className="mt-1 text-sm text-gray-600">{n.contenido}</p>
+                  <div className="mt-1 text-sm text-gray-600 [&_a]:text-blue-600 [&_a]:underline" dangerouslySetInnerHTML={{ __html: n.contenido }} />
                   <p className="mt-1 text-xs text-gray-400">
                     {new Date(n.fechaCreacion).toLocaleDateString('es-MX')}
                   </p>
@@ -136,14 +166,67 @@ export function NoticiasManager({ noticias, onRefresh }: NoticiasManagerProps) {
             />
           </div>
           <div>
-            <label className="mb-1 block text-sm font-medium text-gray-700">Contenido</label>
-            <textarea
-              required
-              value={form.contenido}
-              onChange={(e) => setForm({ ...form, contenido: e.target.value })}
-              rows={3}
-              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold"
-            />
+            <label className="mb-1 block text-sm font-medium text-gray-700">Contenido (soporta HTML)</label>
+            {/* Toolbar */}
+            <div className="mb-1 flex flex-wrap items-center gap-1 rounded-t-lg border border-b-0 border-gray-300 bg-gray-50 px-2 py-1.5">
+              <button
+                type="button"
+                onClick={insertLink}
+                className="rounded px-2 py-1 text-xs font-medium text-gray-700 hover:bg-gray-200"
+                title="Insertar enlace"
+              >
+                &#128279; Link
+              </button>
+              <button
+                type="button"
+                onClick={() => insertAtCursor('<b>', '</b>')}
+                className="rounded px-2 py-1 text-xs font-bold text-gray-700 hover:bg-gray-200"
+                title="Negrita"
+              >
+                B
+              </button>
+              <button
+                type="button"
+                onClick={() => insertAtCursor('<i>', '</i>')}
+                className="rounded px-2 py-1 text-xs italic text-gray-700 hover:bg-gray-200"
+                title="Cursiva"
+              >
+                I
+              </button>
+              <button
+                type="button"
+                onClick={() => insertAtCursor('<br>', '')}
+                className="rounded px-2 py-1 text-xs text-gray-700 hover:bg-gray-200"
+                title="Salto de linea"
+              >
+                &#9166; Salto
+              </button>
+              <div className="ml-auto">
+                <button
+                  type="button"
+                  onClick={() => setShowPreview(!showPreview)}
+                  className={`rounded px-2 py-1 text-xs font-medium ${showPreview ? 'bg-gold/20 text-gold-dark' : 'text-gray-500 hover:bg-gray-200'}`}
+                >
+                  {showPreview ? 'Editar' : 'Vista previa'}
+                </button>
+              </div>
+            </div>
+            {showPreview ? (
+              <div
+                className="min-h-[5rem] w-full rounded-b-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-700 [&_a]:font-semibold [&_a]:text-blue-600 [&_a]:underline"
+                dangerouslySetInnerHTML={{ __html: form.contenido || '<span class="text-gray-400">Sin contenido</span>' }}
+              />
+            ) : (
+              <textarea
+                ref={textareaRef}
+                required
+                value={form.contenido}
+                onChange={(e) => setForm({ ...form, contenido: e.target.value })}
+                rows={4}
+                className="w-full rounded-b-lg border border-gray-300 px-3 py-2 font-mono text-sm focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold"
+                placeholder='Ejemplo: Visita <a href="https://example.com" target="_blank">este enlace</a>'
+              />
+            )}
           </div>
           <div className="flex items-center gap-2">
             <input

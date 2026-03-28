@@ -25,9 +25,10 @@ export function NewsSection({ noticias }: NewsSectionProps) {
                 {noticia.titulo}
               </p>
               {noticia.contenido !== noticia.titulo && (
-                <p className="mt-1 text-xs text-night-light">
-                  {noticia.contenido}
-                </p>
+                <div
+                  className="mt-1 text-xs text-night-light [&_a]:font-semibold [&_a]:text-gold-dark [&_a]:underline [&_a]:hover:text-night"
+                  dangerouslySetInnerHTML={{ __html: noticia.contenido }}
+                />
               )}
             </div>
           ))}
